@@ -1,4 +1,4 @@
-.. image:: https://raw.githubusercontent.com/nilp0inter/experta/develop/docs/static/expertalogo.png
+.. image:: https://raw.githubusercontent.com/nilp0inter/experta/develop/docs/static/expertalogo_small.png
     :target: https://github.com/nilp0inter/experta
 
 
