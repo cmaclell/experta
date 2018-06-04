@@ -1,27 +1,9 @@
-.. image:: https://raw.githubusercontent.com/nilp0inter/experta/develop/docs/static/expertalogo_small.png
-    :target: https://github.com/nilp0inter/experta
 
+=========
+|Experta|  
+=========
 
-Expert Systems for Python
-=========================
-
-.. image:: https://img.shields.io/pypi/v/experta.svg
-    :target: https://pypi.python.org/pypi/experta
-
-.. image:: https://img.shields.io/pypi/pyversions/experta.svg
-    :target: https://pypi.python.org/pypi/experta
-
-.. image:: https://travis-ci.org/nilp0inter/experta.svg?branch=master
-    :target: https://travis-ci.org/nilp0inter/experta
-
-.. image:: https://readthedocs.org/projects/experta/badge/?version=stable
-    :target: https://readthedocs.org/projects/experta/?badge=stable
-    :alt: Documentation Status
-
-.. image:: https://codecov.io/gh/nilp0inter/experta/branch/develop/graph/badge.svg
-    :target: https://codecov.io/gh/nilp0inter/experta
-    :alt: codecov.io
-
+|pypi| |version| |tests| |docs| |coverage|
 
 Experta is a Python library for building expert systems strongly inspired
 by CLIPS_.
@@ -64,4 +46,21 @@ You can find some more examples on GitHub_.
 
 .. _CLIPS: http://clipsrules.sourceforge.net
 .. _GitHub: https://github.com/nilp0inter/experta/tree/develop/docs
+.. |Experta| image:: https://raw.githubusercontent.com/nilp0inter/experta/develop/docs/static/expertalogo_small.png
+.. |pypi| image:: https://img.shields.io/pypi/v/experta.svg
+    :target: https://pypi.python.org/pypi/experta
+
+.. |version| image:: https://img.shields.io/pypi/pyversions/experta.svg
+    :target: https://pypi.python.org/pypi/experta
+
+.. |tests| image:: https://travis-ci.org/nilp0inter/experta.svg?branch=master
+    :target: https://travis-ci.org/nilp0inter/experta
+
+.. |docs| image:: https://readthedocs.org/projects/experta/badge/?version=stable
+    :target: https://readthedocs.org/projects/experta/?badge=stable
+    :alt: Documentation Status
+
+.. |coverage| image:: https://codecov.io/gh/nilp0inter/experta/branch/develop/graph/badge.svg
+    :target: https://codecov.io/gh/nilp0inter/experta
+    :alt: codecov.io
 
