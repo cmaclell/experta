@@ -1,31 +1,35 @@
-PyKnow: Expert Systems for Python
-=================================
+.. image:: https://raw.githubusercontent.com/nilp0inter/experta/develop/docs/static/expertalogo.png
+    :target: https://github.com/nilp0inter/experta
 
-.. image:: https://img.shields.io/pypi/v/pyknow.svg
-    :target: https://pypi.python.org/pypi/pyknow
 
-.. image:: https://img.shields.io/pypi/pyversions/pyknow.svg
-    :target: https://pypi.python.org/pypi/pyknow
+Expert Systems for Python
+=========================
 
-.. image:: https://travis-ci.org/buguroo/pyknow.svg?branch=master
-    :target: https://travis-ci.org/buguroo/pyknow
+.. image:: https://img.shields.io/pypi/v/experta.svg
+    :target: https://pypi.python.org/pypi/experta
 
-.. image:: https://readthedocs.org/projects/pyknow/badge/?version=stable
-    :target: https://readthedocs.org/projects/pyknow/?badge=stable
+.. image:: https://img.shields.io/pypi/pyversions/experta.svg
+    :target: https://pypi.python.org/pypi/experta
+
+.. image:: https://travis-ci.org/nilp0inter/experta.svg?branch=master
+    :target: https://travis-ci.org/nilp0inter/experta
+
+.. image:: https://readthedocs.org/projects/experta/badge/?version=stable
+    :target: https://readthedocs.org/projects/experta/?badge=stable
     :alt: Documentation Status
 
-.. image:: https://codecov.io/gh/buguroo/pyknow/branch/develop/graph/badge.svg
-    :target: https://codecov.io/gh/buguroo/pyknow
+.. image:: https://codecov.io/gh/nilp0inter/experta/branch/develop/graph/badge.svg
+    :target: https://codecov.io/gh/nilp0inter/experta
     :alt: codecov.io
 
 
-PyKnow is a Python library for building expert systems strongly inspired
+Experta is a Python library for building expert systems strongly inspired
 by CLIPS_.
 
 .. code-block:: python
 
    from random import choice
-   from pyknow import *
+   from experta import *
 
 
    class Light(Fact):
@@ -59,5 +63,5 @@ by CLIPS_.
 You can find some more examples on GitHub_.
 
 .. _CLIPS: http://clipsrules.sourceforge.net
-.. _GitHub: https://github.com/buguroo/pyknow/tree/develop/docs
+.. _GitHub: https://github.com/nilp0inter/experta/tree/develop/docs
 
