@@ -4,7 +4,7 @@ import pytest
 
 
 def test_token_is_namedtuple():
-    from pyknow.matchers.rete.token import Token
+    from experta.matchers.rete.token import Token
 
     assert issubclass(Token, tuple)
     assert 'tag' in Token._fields
@@ -13,7 +13,7 @@ def test_token_is_namedtuple():
 
 
 def test_token_tagtype():
-    from pyknow.matchers.rete.token import Token
+    from experta.matchers.rete.token import Token
 
     assert issubclass(Token.TagType, Enum)
     assert hasattr(Token.TagType, 'VALID')
@@ -28,8 +28,8 @@ def test_token_initialization_types():
         - An interable of Facts
 
     """
-    from pyknow.matchers.rete.token import Token
-    from pyknow.fact import Fact
+    from experta.matchers.rete.token import Token
+    from experta.fact import Fact
 
     with pytest.raises(TypeError):
         Token(None, Fact())
@@ -55,8 +55,8 @@ def test_token_initialization_conversions():
         - An interable of Facts: Converter to a set of Facts.
 
     """
-    from pyknow.matchers.rete.token import Token
-    from pyknow.fact import Fact
+    from experta.matchers.rete.token import Token
+    from experta.fact import Fact
 
     t1 = Token(Token.TagType.VALID, Fact())
     assert t1.data == {Fact()}
@@ -66,19 +66,19 @@ def test_token_initialization_conversions():
 
 
 def test_token_shortcut_valid():
-    from pyknow.matchers.rete.token import Token
+    from experta.matchers.rete.token import Token
 
     assert Token.valid([]) == Token(Token.TagType.VALID, [])
 
 
 def test_token_shortcut_invalid():
-    from pyknow.matchers.rete.token import Token
+    from experta.matchers.rete.token import Token
 
     assert Token.invalid([]) == Token(Token.TagType.INVALID, [])
 
 
 def test_token_copy_mutable():
-    from pyknow.matchers.rete.token import Token
+    from experta.matchers.rete.token import Token
 
     a = Token.valid([])
     b = a.copy()

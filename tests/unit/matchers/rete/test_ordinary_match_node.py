@@ -3,20 +3,20 @@ import pytest
 
 def test_ordinarymatchnode_exists():
     try:
-        from pyknow.matchers.rete.nodes import OrdinaryMatchNode
+        from experta.matchers.rete.nodes import OrdinaryMatchNode
     except ImportError as exc:
         assert False, exc
 
 
 def test_ordinarymatchnode_is_abstractnode():
-    from pyknow.matchers.rete.nodes import OrdinaryMatchNode
-    from pyknow.matchers.rete.abstract import TwoInputNode
+    from experta.matchers.rete.nodes import OrdinaryMatchNode
+    from experta.matchers.rete.abstract import TwoInputNode
 
     assert issubclass(OrdinaryMatchNode, TwoInputNode)
 
 
 def test_ordinarymatchnode_accepts_callable():
-    from pyknow.matchers.rete.nodes import OrdinaryMatchNode
+    from experta.matchers.rete.nodes import OrdinaryMatchNode
 
     # MUST NOT RAISE
     OrdinaryMatchNode(lambda l, r: True)
@@ -26,9 +26,9 @@ def test_ordinarymatchnode_accepts_callable():
 
 
 def test_ordinarymatchnode_left_activate_valid_store_in_left_memory():
-    from pyknow.matchers.rete.nodes import OrdinaryMatchNode
-    from pyknow.matchers.rete.token import Token, TokenInfo
-    from pyknow.fact import Fact
+    from experta.matchers.rete.nodes import OrdinaryMatchNode
+    from experta.matchers.rete.token import Token, TokenInfo
+    from experta.fact import Fact
 
     omn = OrdinaryMatchNode(lambda l, r: True)
 
@@ -42,9 +42,9 @@ def test_ordinarymatchnode_left_activate_valid_store_in_left_memory():
 
 
 def test_ordinarymatchnode_left_activate_valid_build_new_tokens(TestNode):
-    from pyknow.matchers.rete.nodes import OrdinaryMatchNode
-    from pyknow.matchers.rete.token import Token, TokenInfo
-    from pyknow.fact import Fact
+    from experta.matchers.rete.nodes import OrdinaryMatchNode
+    from experta.matchers.rete.token import Token, TokenInfo
+    from experta.fact import Fact
 
     omn = OrdinaryMatchNode(lambda l, r: True)
     tn1 = TestNode()
@@ -72,9 +72,9 @@ def test_ordinarymatchnode_left_activate_valid_build_new_tokens(TestNode):
 
 
 def test_ordinarymatchnode_left_activate_invalid_remove_from_left_memory():
-    from pyknow.matchers.rete.nodes import OrdinaryMatchNode
-    from pyknow.matchers.rete.token import Token
-    from pyknow.fact import Fact
+    from experta.matchers.rete.nodes import OrdinaryMatchNode
+    from experta.matchers.rete.token import Token
+    from experta.fact import Fact
 
     omn = OrdinaryMatchNode(lambda l, r: True)
 
@@ -88,9 +88,9 @@ def test_ordinarymatchnode_left_activate_invalid_remove_from_left_memory():
 
 
 def test_ordinarymatchnode_left_activate_invalid_build_new_tokens(TestNode):
-    from pyknow.matchers.rete.nodes import OrdinaryMatchNode
-    from pyknow.matchers.rete.token import Token
-    from pyknow.fact import Fact
+    from experta.matchers.rete.nodes import OrdinaryMatchNode
+    from experta.matchers.rete.token import Token
+    from experta.fact import Fact
 
     omn = OrdinaryMatchNode(lambda l, r: True)
     tn1 = TestNode()
@@ -118,9 +118,9 @@ def test_ordinarymatchnode_left_activate_invalid_build_new_tokens(TestNode):
 
 
 def test_ordinarymatchnode_right_activate_valid_store_in_right_memory():
-    from pyknow.matchers.rete.nodes import OrdinaryMatchNode
-    from pyknow.matchers.rete.token import Token, TokenInfo
-    from pyknow.fact import Fact
+    from experta.matchers.rete.nodes import OrdinaryMatchNode
+    from experta.matchers.rete.token import Token, TokenInfo
+    from experta.fact import Fact
 
     omn = OrdinaryMatchNode(lambda l, r: True)
 
@@ -134,9 +134,9 @@ def test_ordinarymatchnode_right_activate_valid_store_in_right_memory():
 
 
 def test_ordinarymatchnode_right_activate_valid_build_new_tokens(TestNode):
-    from pyknow.matchers.rete.nodes import OrdinaryMatchNode
-    from pyknow.matchers.rete.token import Token
-    from pyknow.fact import Fact
+    from experta.matchers.rete.nodes import OrdinaryMatchNode
+    from experta.matchers.rete.token import Token
+    from experta.fact import Fact
 
     omn = OrdinaryMatchNode(lambda l, r: True)
     tn1 = TestNode()
@@ -164,9 +164,9 @@ def test_ordinarymatchnode_right_activate_valid_build_new_tokens(TestNode):
 
 
 def test_ordinarymatchnode_right_activate_invalid_remove_from_right_memory():
-    from pyknow.matchers.rete.nodes import OrdinaryMatchNode
-    from pyknow.matchers.rete.token import Token
-    from pyknow.fact import Fact
+    from experta.matchers.rete.nodes import OrdinaryMatchNode
+    from experta.matchers.rete.token import Token
+    from experta.fact import Fact
 
     omn = OrdinaryMatchNode(lambda l, r: True)
 
@@ -180,9 +180,9 @@ def test_ordinarymatchnode_right_activate_invalid_remove_from_right_memory():
 
 
 def test_ordinarymatchnode_right_activate_invalid_build_new_tokens(TestNode):
-    from pyknow.matchers.rete.nodes import OrdinaryMatchNode
-    from pyknow.matchers.rete.token import Token
-    from pyknow.fact import Fact
+    from experta.matchers.rete.nodes import OrdinaryMatchNode
+    from experta.matchers.rete.token import Token
+    from experta.fact import Fact
 
     omn = OrdinaryMatchNode(lambda l, r: True)
     tn1 = TestNode()

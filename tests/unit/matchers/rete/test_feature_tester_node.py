@@ -3,20 +3,20 @@ import pytest
 
 def test_featuretesternode_exists():
     try:
-        from pyknow.matchers.rete.nodes import FeatureTesterNode
+        from experta.matchers.rete.nodes import FeatureTesterNode
     except ImportError as exc:
         assert False, exc
 
 
 def test_featuretesternode_is_oneinputnode():
-    from pyknow.matchers.rete.nodes import FeatureTesterNode
-    from pyknow.matchers.rete.abstract import OneInputNode
+    from experta.matchers.rete.nodes import FeatureTesterNode
+    from experta.matchers.rete.abstract import OneInputNode
 
     assert issubclass(FeatureTesterNode, OneInputNode)
 
 
 def test_featuretesternode_accepts_callable():
-    from pyknow.matchers.rete.nodes import FeatureTesterNode
+    from experta.matchers.rete.nodes import FeatureTesterNode
 
     # MUST NOT RAISE
     FeatureTesterNode(lambda x: True)
@@ -26,9 +26,9 @@ def test_featuretesternode_accepts_callable():
 
 
 def test_featuretesternode_pass_when_callable_succeed(TestNode):
-    from pyknow.matchers.rete.nodes import FeatureTesterNode
-    from pyknow.matchers.rete.token import Token
-    from pyknow.fact import Fact
+    from experta.matchers.rete.nodes import FeatureTesterNode
+    from experta.matchers.rete.token import Token
+    from experta.fact import Fact
 
     ftn = FeatureTesterNode(lambda f: True)
     tn1 = TestNode()
@@ -45,9 +45,9 @@ def test_featuretesternode_pass_when_callable_succeed(TestNode):
 
 
 def test_featuretesternode_pass_when_callable_fail(TestNode):
-    from pyknow.matchers.rete.nodes import FeatureTesterNode
-    from pyknow.matchers.rete.token import Token
-    from pyknow.fact import Fact
+    from experta.matchers.rete.nodes import FeatureTesterNode
+    from experta.matchers.rete.token import Token
+    from experta.fact import Fact
 
     ftn = FeatureTesterNode(lambda f: False)
     tn1 = TestNode()
@@ -64,9 +64,9 @@ def test_featuretesternode_pass_when_callable_fail(TestNode):
 
 
 def test_featuretesternode_pass_when_callable_adds_context(TestNode):
-    from pyknow.matchers.rete.nodes import FeatureTesterNode
-    from pyknow.matchers.rete.token import Token
-    from pyknow.fact import Fact
+    from experta.matchers.rete.nodes import FeatureTesterNode
+    from experta.matchers.rete.token import Token
+    from experta.fact import Fact
 
     ftn = FeatureTesterNode(lambda f: {'something': True})
     tn1 = TestNode()
@@ -86,9 +86,9 @@ def test_featuretesternode_pass_when_callable_adds_context(TestNode):
 
 
 def test_featuretesternode_pass_when_callable_modify_context(TestNode):
-    from pyknow.matchers.rete.nodes import FeatureTesterNode
-    from pyknow.matchers.rete.token import Token
-    from pyknow.fact import Fact
+    from experta.matchers.rete.nodes import FeatureTesterNode
+    from experta.matchers.rete.token import Token
+    from experta.fact import Fact
 
     ftn = FeatureTesterNode(lambda f: {'something': True})
     tn1 = TestNode()
@@ -108,9 +108,9 @@ def test_featuretesternode_pass_when_callable_modify_context(TestNode):
 
 
 def test_featuretesternode_pass_when_callable_dont_modify_context(TestNode):
-    from pyknow.matchers.rete.nodes import FeatureTesterNode
-    from pyknow.matchers.rete.token import Token
-    from pyknow.fact import Fact
+    from experta.matchers.rete.nodes import FeatureTesterNode
+    from experta.matchers.rete.token import Token
+    from experta.fact import Fact
 
     ftn = FeatureTesterNode(lambda f: {'something': True})
     tn1 = TestNode()
@@ -130,9 +130,9 @@ def test_featuretesternode_pass_when_callable_dont_modify_context(TestNode):
 
 
 def test_featuretesternode_pass_fact_to_matcher():
-    from pyknow.matchers.rete.nodes import FeatureTesterNode
-    from pyknow.matchers.rete.token import Token
-    from pyknow.fact import Fact
+    from experta.matchers.rete.nodes import FeatureTesterNode
+    from experta.matchers.rete.token import Token
+    from experta.fact import Fact
 
     fact = Fact(this_is_my_fact=True)
 

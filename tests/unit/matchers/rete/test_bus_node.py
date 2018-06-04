@@ -3,28 +3,28 @@ import pytest
 
 def test_busnode_exists():
     try:
-        from pyknow.matchers.rete.nodes import BusNode
+        from experta.matchers.rete.nodes import BusNode
     except ImportError as exc:
         assert False, exc
 
 
 def test_busnode_is_node():
-    from pyknow.matchers.rete.nodes import BusNode
-    from pyknow.matchers.rete.abstract import Node
+    from experta.matchers.rete.nodes import BusNode
+    from experta.matchers.rete.abstract import Node
 
     assert issubclass(BusNode, Node)
 
 
 def test_busnode_interface():
-    from pyknow.matchers.rete.nodes import BusNode
+    from experta.matchers.rete.nodes import BusNode
 
     assert hasattr(BusNode, 'add')
     assert hasattr(BusNode, 'remove')
 
 
 def test_busnode_add_child(TestNode):
-    from pyknow.matchers.rete.nodes import BusNode
-    from pyknow.fact import Fact
+    from experta.matchers.rete.nodes import BusNode
+    from experta.fact import Fact
 
     bn = BusNode()
     tn = TestNode()
@@ -34,9 +34,9 @@ def test_busnode_add_child(TestNode):
 
 
 def test_busnode_add(TestNode):
-    from pyknow.matchers.rete.nodes import BusNode
-    from pyknow.matchers.rete.token import Token
-    from pyknow.fact import Fact
+    from experta.matchers.rete.nodes import BusNode
+    from experta.matchers.rete.token import Token
+    from experta.fact import Fact
 
     bn = BusNode()
     tn1 = TestNode()
@@ -52,9 +52,9 @@ def test_busnode_add(TestNode):
 
 
 def test_busnode_remove(TestNode):
-    from pyknow.matchers.rete.nodes import BusNode
-    from pyknow.matchers.rete.token import Token
-    from pyknow.fact import Fact
+    from experta.matchers.rete.nodes import BusNode
+    from experta.matchers.rete.token import Token
+    from experta.fact import Fact
 
     bn = BusNode()
     tn1 = TestNode()

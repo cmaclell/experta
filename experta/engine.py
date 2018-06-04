@@ -1,5 +1,5 @@
 """
-``pyknow engine`` represents ``CLIPS modules``
+``experta engine`` represents ``CLIPS modules``
 
 """
 
@@ -7,14 +7,14 @@ from itertools import chain
 import inspect
 import logging
 
-from pyknow import abstract
+from experta import abstract
 
-from pyknow.agenda import Agenda
-from pyknow.fact import InitialFact
-from pyknow.factlist import FactList
-from pyknow.rule import Rule
-from pyknow.deffacts import DefFacts
-from pyknow import watchers
+from experta.agenda import Agenda
+from experta.fact import InitialFact
+from experta.factlist import FactList
+from experta.rule import Rule
+from experta.deffacts import DefFacts
+from experta import watchers
 
 logging.basicConfig()
 
@@ -22,15 +22,15 @@ logging.basicConfig()
 class KnowledgeEngine:
     """
     This represents a clips' ``module``, wich is an ``inference engine``
-    holding a set of ``rules`` (as :obj:`pyknow.rule.Rule` objects),
-    an ``agenda`` (as :obj:`pyknow.agenda.Agenda` object)
-    and a ``fact-list`` (as :obj:`pyknow.factlist.FactList` objects)
+    holding a set of ``rules`` (as :obj:`experta.rule.Rule` objects),
+    an ``agenda`` (as :obj:`experta.agenda.Agenda` object)
+    and a ``fact-list`` (as :obj:`experta.factlist.FactList` objects)
 
     This could be considered, when inherited from, as the
     ``knowlege-base``.
     """
-    from pyknow.matchers import ReteMatcher as __matcher__
-    from pyknow.strategies import DepthStrategy as __strategy__
+    from experta.matchers import ReteMatcher as __matcher__
+    from experta.strategies import DepthStrategy as __strategy__
 
     def __init__(self):
         self.running = False

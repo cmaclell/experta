@@ -5,10 +5,10 @@ import collections
 
 from schema import Schema
 
-from pyknow.pattern import Bindable
-from pyknow.utils import freeze, unfreeze
-from pyknow.conditionalelement import OperableCE
-from pyknow.conditionalelement import ConditionalElement
+from experta.pattern import Bindable
+from experta.utils import freeze, unfreeze
+from experta.conditionalelement import OperableCE
+from experta.conditionalelement import ConditionalElement
 
 
 class BaseField(metaclass=abc.ABCMeta):

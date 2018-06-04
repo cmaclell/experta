@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-pyknow setup script.
+experta setup script.
 
 """
 from setuptools import setup, find_packages
@@ -12,9 +12,9 @@ NEWS = open(os.path.join(HERE, 'TODO.rst')).read()
 
 VERSION = '1.7.0'
 
-setup(name='pyknow',
+setup(name='experta',
       version=VERSION,
-      description="PyKnow: Expert Systems for Python",
+      description="Expert Systems for Python",
       long_description=README + '\n\n' + NEWS,
       classifiers=[
           'Programming Language :: Python :: 3.4',
@@ -25,7 +25,7 @@ setup(name='pyknow',
       keywords='knowledge-based inference engine',
       author='Roberto Abdelkader Martínez Pérez',
       author_email='robertomartinezp@gmail.com',
-      url='https://github.com/buguroo/pyknow',
+      url='https://github.com/nilp0inter/experta',
       license='LGPLv3',
       packages=find_packages(exclude=["tests", "docs"]),
       include_package_data=True,

@@ -1,197 +1,197 @@
 Modules documentation
 =====================
 
-pyknow
+experta
 ------
 
-.. automodule:: pyknow
+.. automodule:: experta
     :members:
     :undoc-members:
     :show-inheritance:
 
 
-pyknow.abstract
+experta.abstract
 ---------------
 
-.. automodule:: pyknow.abstract
+.. automodule:: experta.abstract
     :members:
     :undoc-members:
     :show-inheritance:
 
 
-pyknow.activation
+experta.activation
 -----------------
 
-.. automodule:: pyknow.activation
+.. automodule:: experta.activation
     :members:
     :undoc-members:
     :show-inheritance:
 
 
-pyknow.agenda
+experta.agenda
 -------------
 
-.. automodule:: pyknow.agenda
+.. automodule:: experta.agenda
     :members:
     :undoc-members:
     :show-inheritance:
 
 
-pyknow.conditionalelement
+experta.conditionalelement
 -------------------------
 
-.. automodule:: pyknow.conditionalelement
+.. automodule:: experta.conditionalelement
     :members:
     :undoc-members:
     :show-inheritance:
 
 
-pyknow.engine
+experta.engine
 -------------
 
-.. automodule:: pyknow.engine
+.. automodule:: experta.engine
     :members:
     :undoc-members:
     :show-inheritance:
 
 
-pyknow.factlist
+experta.factlist
 ---------------
 
-.. automodule:: pyknow.factlist
+.. automodule:: experta.factlist
     :members:
     :undoc-members:
     :show-inheritance:
 
 
-pyknow.fact
+experta.fact
 -----------
 
-.. automodule:: pyknow.fact
+.. automodule:: experta.fact
     :members:
     :undoc-members:
     :show-inheritance:
 
 
-pyknow.fieldconstraint
+experta.fieldconstraint
 ----------------------
 
-.. automodule:: pyknow.fieldconstraint
+.. automodule:: experta.fieldconstraint
     :members:
     :undoc-members:
     :show-inheritance:
 
 
-pyknow.rule
+experta.rule
 -----------
 
-.. automodule:: pyknow.rule
+.. automodule:: experta.rule
     :members:
     :undoc-members:
     :show-inheritance:
 
 
-pyknow.strategies
+experta.strategies
 -----------------
 
-.. automodule:: pyknow.strategies
+.. automodule:: experta.strategies
     :members:
     :undoc-members:
     :show-inheritance:
 
 
-pyknow.watchers
+experta.watchers
 ---------------
 
-.. automodule:: pyknow.watchers
+.. automodule:: experta.watchers
     :members:
     :undoc-members:
     :show-inheritance:
 
 
-pyknow.matchers
+experta.matchers
 ---------------
 
-.. automodule:: pyknow.matchers
+.. automodule:: experta.matchers
     :members:
     :undoc-members:
     :show-inheritance:
 
 
-pyknow.matchers.rete
+experta.matchers.rete
 --------------------
 
-.. automodule:: pyknow.matchers.rete
+.. automodule:: experta.matchers.rete
     :members:
     :undoc-members:
     :show-inheritance:
 
 
-pyknow.matchers.rete.abstract
+experta.matchers.rete.abstract
 -----------------------------
 
-.. automodule:: pyknow.matchers.rete.abstract
+.. automodule:: experta.matchers.rete.abstract
     :members:
     :undoc-members:
     :show-inheritance:
 
 
-pyknow.matchers.rete.check
+experta.matchers.rete.check
 --------------------------
 
-.. automodule:: pyknow.matchers.rete.check
+.. automodule:: experta.matchers.rete.check
     :members:
     :undoc-members:
     :show-inheritance:
 
 
-pyknow.matchers.rete.dnf
+experta.matchers.rete.dnf
 ------------------------
 
-.. automodule:: pyknow.matchers.rete.dnf
+.. automodule:: experta.matchers.rete.dnf
     :members:
     :undoc-members:
     :show-inheritance:
 
 
-pyknow.matchers.rete.mixins
+experta.matchers.rete.mixins
 ---------------------------
 
-.. automodule:: pyknow.matchers.rete.mixins
+.. automodule:: experta.matchers.rete.mixins
     :members:
     :undoc-members:
     :show-inheritance:
 
 
-pyknow.matchers.rete.nodes
+experta.matchers.rete.nodes
 --------------------------
 
-.. automodule:: pyknow.matchers.rete.nodes
+.. automodule:: experta.matchers.rete.nodes
     :members:
     :undoc-members:
     :show-inheritance:
 
 
-pyknow.matchers.rete.token
+experta.matchers.rete.token
 --------------------------
 
-.. automodule:: pyknow.matchers.rete.token
+.. automodule:: experta.matchers.rete.token
     :members:
     :undoc-members:
     :show-inheritance:
 
 
-pyknow.matchers.rete.utils
+experta.matchers.rete.utils
 --------------------------
 
-.. automodule:: pyknow.matchers.rete.utils
+.. automodule:: experta.matchers.rete.utils
     :members:
     :undoc-members:
     :show-inheritance:
 
 
-pyknow.operator
+experta.operator
 ---------------
 
-.. automodule:: pyknow.operator
+.. automodule:: experta.operator
     :members:

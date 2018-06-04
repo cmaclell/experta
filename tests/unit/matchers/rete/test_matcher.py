@@ -1,33 +1,33 @@
 import pytest
 
-from pyknow import abstract
+from experta import abstract
 
 
 def test_retematcher_exists():
     try:
-        from pyknow.matchers.rete import ReteMatcher
+        from experta.matchers.rete import ReteMatcher
     except ImportError as exc:
         assert False, exc
 
 
 def test_retematcher_is_matcher():
-    from pyknow.matchers.rete import ReteMatcher
+    from experta.matchers.rete import ReteMatcher
 
     assert issubclass(ReteMatcher, abstract.Matcher)
 
 
 def test_retematcher_is_not_abstract():
-    from pyknow.matchers.rete import ReteMatcher
-    from pyknow.engine import KnowledgeEngine
+    from experta.matchers.rete import ReteMatcher
+    from experta.engine import KnowledgeEngine
 
     # MUST NOT RAISE
     ReteMatcher(KnowledgeEngine())
 
 
 def test_retematcher_has_root_node():
-    from pyknow.matchers.rete import ReteMatcher
-    from pyknow.engine import KnowledgeEngine
-    from pyknow.matchers.rete.nodes import BusNode
+    from experta.matchers.rete import ReteMatcher
+    from experta.engine import KnowledgeEngine
+    from experta.matchers.rete.nodes import BusNode
 
     matcher = ReteMatcher(KnowledgeEngine())
     assert hasattr(matcher, 'root_node')
@@ -35,10 +35,10 @@ def test_retematcher_has_root_node():
 
 
 def test_retematcher_changes_are_propagated(TestNode):
-    from pyknow.engine import KnowledgeEngine
-    from pyknow.fact import Fact
-    from pyknow.matchers.rete import ReteMatcher
-    from pyknow.matchers.rete.token import Token
+    from experta.engine import KnowledgeEngine
+    from experta.fact import Fact
+    from experta.matchers.rete import ReteMatcher
+    from experta.matchers.rete.token import Token
 
     matcher = ReteMatcher(KnowledgeEngine())
     tn1 = TestNode()
@@ -66,12 +66,12 @@ def test_retematcher_changes_are_propagated(TestNode):
 
 
 def test_retematcher_changes_return_activations_if_csn():
-    from pyknow.engine import KnowledgeEngine
-    from pyknow.fact import Fact
-    from pyknow.rule import Rule
-    from pyknow.activation import Activation
-    from pyknow.matchers.rete.nodes import ConflictSetNode
-    from pyknow.matchers.rete import ReteMatcher
+    from experta.engine import KnowledgeEngine
+    from experta.fact import Fact
+    from experta.rule import Rule
+    from experta.activation import Activation
+    from experta.matchers.rete.nodes import ConflictSetNode
+    from experta.matchers.rete import ReteMatcher
 
     matcher = ReteMatcher(KnowledgeEngine())
     rule = Rule()

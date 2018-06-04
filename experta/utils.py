@@ -18,7 +18,7 @@ def freeze(obj):
     else:
         raise TypeError(
             ("type(%r) => %s is not hashable, "
-             "see `pyknow.utils.freeze` docs to register your "
+             "see `experta.utils.freeze` docs to register your "
              "own freeze method") % (obj, type(obj)))
 
 

@@ -3,20 +3,20 @@ import pytest
 
 def test_notnode_exists():
     try:
-        from pyknow.matchers.rete.nodes import NotNode
+        from experta.matchers.rete.nodes import NotNode
     except ImportError as exc:
         assert False, exc
 
 
 def test_notnode_is_abstractnode():
-    from pyknow.matchers.rete.nodes import NotNode
-    from pyknow.matchers.rete.abstract import TwoInputNode
+    from experta.matchers.rete.nodes import NotNode
+    from experta.matchers.rete.abstract import TwoInputNode
 
     assert issubclass(NotNode, TwoInputNode)
 
 
 def test_notnode_accepts_callable():
-    from pyknow.matchers.rete.nodes import NotNode
+    from experta.matchers.rete.nodes import NotNode
 
     # MUST NOT RAISE
     NotNode(lambda l, r: True)
@@ -26,9 +26,9 @@ def test_notnode_accepts_callable():
 
 
 def test_notnode_left_activate_valid_empty_right(TestNode):
-    from pyknow.matchers.rete.nodes import NotNode
-    from pyknow.matchers.rete.token import Token
-    from pyknow.fact import Fact
+    from experta.matchers.rete.nodes import NotNode
+    from experta.matchers.rete.token import Token
+    from experta.fact import Fact
 
     nn = NotNode(lambda l, r: True)
     tn1 = TestNode()
@@ -46,9 +46,9 @@ def test_notnode_left_activate_valid_empty_right(TestNode):
 
 
 def test_notnode_left_activate_valid_non_matching(TestNode):
-    from pyknow.matchers.rete.nodes import NotNode
-    from pyknow.matchers.rete.token import Token
-    from pyknow.fact import Fact
+    from experta.matchers.rete.nodes import NotNode
+    from experta.matchers.rete.token import Token
+    from experta.fact import Fact
 
     nn = NotNode(lambda l, r: False)
     nn.right_memory.append(Token.valid(Fact(test='data1')).to_info())
@@ -69,9 +69,9 @@ def test_notnode_left_activate_valid_non_matching(TestNode):
 
 
 def test_notnode_left_activate_valid_matching(TestNode):
-    from pyknow.matchers.rete.nodes import NotNode
-    from pyknow.matchers.rete.token import Token
-    from pyknow.fact import Fact
+    from experta.matchers.rete.nodes import NotNode
+    from experta.matchers.rete.token import Token
+    from experta.fact import Fact
 
     nn = NotNode(lambda l, r: True)
     nn.right_memory.append(Token.valid(Fact(test='data')).to_info())
@@ -91,9 +91,9 @@ def test_notnode_left_activate_valid_matching(TestNode):
 
 
 def test_notnode_right_activate_valid_empty(TestNode):
-    from pyknow.matchers.rete.nodes import NotNode
-    from pyknow.matchers.rete.token import Token
-    from pyknow.fact import Fact
+    from experta.matchers.rete.nodes import NotNode
+    from experta.matchers.rete.token import Token
+    from experta.fact import Fact
 
     nn = NotNode(lambda l, r: True)
     tn1 = TestNode()
@@ -111,9 +111,9 @@ def test_notnode_right_activate_valid_empty(TestNode):
 
 
 def test_notnode_right_activate_invalid_match_more_than_one(TestNode):
-    from pyknow.matchers.rete.nodes import NotNode
-    from pyknow.matchers.rete.token import Token
-    from pyknow.fact import Fact
+    from experta.matchers.rete.nodes import NotNode
+    from experta.matchers.rete.token import Token
+    from experta.fact import Fact
 
     nn = NotNode(lambda l, r: True)
     tn1 = TestNode()
@@ -135,9 +135,9 @@ def test_notnode_right_activate_invalid_match_more_than_one(TestNode):
 
 
 def test_notnode_right_activate_invalid_match_just_one(TestNode):
-    from pyknow.matchers.rete.nodes import NotNode
-    from pyknow.matchers.rete.token import Token
-    from pyknow.fact import Fact
+    from experta.matchers.rete.nodes import NotNode
+    from experta.matchers.rete.token import Token
+    from experta.fact import Fact
 
     nn = NotNode(lambda l, r: True)
     tn1 = TestNode()
@@ -159,9 +159,9 @@ def test_notnode_right_activate_invalid_match_just_one(TestNode):
 
 
 def test_notnode_right_activate_valid_match_more_than_one(TestNode):
-    from pyknow.matchers.rete.nodes import NotNode
-    from pyknow.matchers.rete.token import Token
-    from pyknow.fact import Fact
+    from experta.matchers.rete.nodes import NotNode
+    from experta.matchers.rete.token import Token
+    from experta.fact import Fact
 
     nn = NotNode(lambda l, r: True)
     tn1 = TestNode()
@@ -182,9 +182,9 @@ def test_notnode_right_activate_valid_match_more_than_one(TestNode):
 
 
 def test_notnode_right_activate_valid_match_just_one(TestNode):
-    from pyknow.matchers.rete.nodes import NotNode
-    from pyknow.matchers.rete.token import Token
-    from pyknow.fact import Fact
+    from experta.matchers.rete.nodes import NotNode
+    from experta.matchers.rete.token import Token
+    from experta.fact import Fact
 
     nn = NotNode(lambda l, r: True)
     tn1 = TestNode()

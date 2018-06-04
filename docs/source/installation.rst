@@ -4,23 +4,23 @@ Installation
 From PyPI
 ---------
 
-To install PyKnow, run this command in your terminal:
+To install Experta, run this command in your terminal:
 
 .. code-block:: bash
 
-   $ pip install pyknow
+   $ pip install experta
 
 
 Getting the source code
 -----------------------
 
-PyKnow is developed `on Github`_.
+Experta is developed `on Github`_.
 
 You can clone the repository using the git command:
 
 .. code-block:: bash
 
-   $ git clone https://github.com/buguroo/pyknow.git
+   $ git clone https://github.com/buguroo/experta.git
 
 Or you can `download the releases`_ in .zip or .tar.gz format.
 
@@ -31,5 +31,5 @@ Once you have a copy of the source, you can install it running this command:
    $ python setup.py install
 
 
-.. _`on Github`: https://github.com/buguroo/pyknow
-.. _`download the releases`: https://github.com/buguroo/pyknow/releases
+.. _`on Github`: https://github.com/buguroo/experta
+.. _`download the releases`: https://github.com/buguroo/experta/releases

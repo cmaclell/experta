@@ -1,6 +1,6 @@
 import abc
 
-from pyknow import watchers
+from experta import watchers
 
 
 class Matcher(metaclass=abc.ABCMeta):

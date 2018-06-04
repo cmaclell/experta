@@ -6,16 +6,16 @@ Test watchers module
 # def test_watchers_has_all_watchers():
 #     """ Test that watchers module contains all watchers """
 #     # pylint: disable=unused-variable
-#     from pyknow.watchers import RULES # NOQA
-#     from pyknow.watchers import AGENDA # NOQA
-#     from pyknow.watchers import FACTS # NOQA
-#     from pyknow.watchers import ACTIVATIONS # NOQA
+#     from experta.watchers import RULES # NOQA
+#     from experta.watchers import AGENDA # NOQA
+#     from experta.watchers import FACTS # NOQA
+#     from experta.watchers import ACTIVATIONS # NOQA
 # 
 # 
 # def test_watchers_watch():
 #     """ Test that watch() method calls setlevel """
-#     from pyknow.watchers import watch
-#     from pyknow.watchers import RULES, FACTS, AGENDA, ACTIVATIONS
+#     from experta.watchers import watch
+#     from experta.watchers import RULES, FACTS, AGENDA, ACTIVATIONS
 #     from unittest.mock import MagicMock
 #     import logging
 #     RULES.setLevel = MagicMock()
@@ -31,8 +31,8 @@ Test watchers module
 # 
 # def test_watchers_watch_once():
 #     """ Test that watch() method calls setlevel """
-#     from pyknow.watchers import watch
-#     from pyknow.watchers import RULES, FACTS, AGENDA, ACTIVATIONS
+#     from experta.watchers import watch
+#     from experta.watchers import RULES, FACTS, AGENDA, ACTIVATIONS
 #     from unittest.mock import MagicMock
 #     import logging
 #     for watcher in [RULES, FACTS, AGENDA, ACTIVATIONS]:

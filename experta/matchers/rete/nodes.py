@@ -10,9 +10,9 @@ from collections.abc import Mapping
 from contextlib import suppress
 from itertools import chain
 
-from pyknow.activation import Activation
-from pyknow.rule import Rule
-from pyknow.watchers import MATCHER, MATCH
+from experta.activation import Activation
+from experta.rule import Rule
+from experta.watchers import MATCHER, MATCH
 
 from . import mixins
 from .abstract import Node, OneInputNode, TwoInputNode

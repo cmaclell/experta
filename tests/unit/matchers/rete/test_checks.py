@@ -3,14 +3,14 @@ import pytest
 
 def test_featurecheck_exists():
     try:
-        from pyknow.matchers.rete.check import FeatureCheck
+        from experta.matchers.rete.check import FeatureCheck
     except ImportError as exc:
         assert False, exc
 
 
 def test_featurecheck_convert_nonPCE_to_PCE():
-    from pyknow.matchers.rete.check import FeatureCheck
-    from pyknow import L
+    from experta.matchers.rete.check import FeatureCheck
+    from experta import L
 
     def testfunc():
         pass
@@ -21,8 +21,8 @@ def test_featurecheck_convert_nonPCE_to_PCE():
 
 
 def test_featurecheck_is_borg_basic_literal():
-    from pyknow.matchers.rete.check import FeatureCheck
-    from pyknow import L
+    from experta.matchers.rete.check import FeatureCheck
+    from experta import L
 
     assert FeatureCheck('somekey', L(1)) is FeatureCheck('somekey', L(1))
 
@@ -30,8 +30,8 @@ def test_featurecheck_is_borg_basic_literal():
 
 
 def test_featurecheck_is_borg_basic_predicate():
-    from pyknow.matchers.rete.check import FeatureCheck
-    from pyknow import P
+    from experta.matchers.rete.check import FeatureCheck
+    from experta import P
 
     def mypredicate1(_):
         return True
@@ -50,8 +50,8 @@ def test_featurecheck_is_borg_basic_predicate():
 
 
 def test_featurecheck_is_borg_basic_wildcard():
-    from pyknow.matchers.rete.check import FeatureCheck
-    from pyknow import W
+    from experta.matchers.rete.check import FeatureCheck
+    from experta import W
 
     assert FeatureCheck('somekey', W('X')) \
         is FeatureCheck('somekey', W('X'))
@@ -61,8 +61,8 @@ def test_featurecheck_is_borg_basic_wildcard():
 
 
 def test_featurecheck_is_borg_composed_literal():
-    from pyknow.matchers.rete.check import FeatureCheck
-    from pyknow import L
+    from experta.matchers.rete.check import FeatureCheck
+    from experta import L
 
     assert FeatureCheck('somekey', L(1) & L(1)) is FeatureCheck('somekey', L(1) & L(1))
     assert FeatureCheck('somekey', L(1) | L(1)) is FeatureCheck('somekey', L(1) | L(1))
@@ -70,8 +70,8 @@ def test_featurecheck_is_borg_composed_literal():
 
 
 def test_featurecheck_is_borg_composed_predicate():
-    from pyknow.matchers.rete.check import FeatureCheck
-    from pyknow import P
+    from experta.matchers.rete.check import FeatureCheck
+    from experta import P
 
     def mypredicate1(_):
         return True
@@ -102,8 +102,8 @@ def test_featurecheck_is_borg_composed_predicate():
 
 
 def test_featurecheck_is_borg_composed_wildcard():
-    from pyknow.matchers.rete.check import FeatureCheck
-    from pyknow import W
+    from experta.matchers.rete.check import FeatureCheck
+    from experta import W
 
     assert FeatureCheck('somekey', W('X') & W()) \
         is FeatureCheck('somekey', W('X') & W())
@@ -125,8 +125,8 @@ def test_featurecheck_is_borg_composed_wildcard():
 
 
 def test_featurecheck_call_literal():
-    from pyknow.matchers.rete.check import FeatureCheck
-    from pyknow import L, Fact
+    from experta.matchers.rete.check import FeatureCheck
+    from experta import L, Fact
 
     # Positional field not present
     check = FeatureCheck(0, L('mydata'))
@@ -157,8 +157,8 @@ def test_featurecheck_call_literal():
 
 
 def test_featurecheck_call_wildcard():
-    from pyknow.matchers.rete.check import FeatureCheck
-    from pyknow import W, Fact
+    from experta.matchers.rete.check import FeatureCheck
+    from experta import W, Fact
 
     # Positional field not present
     check = FeatureCheck(0, W())
@@ -186,8 +186,8 @@ def test_featurecheck_call_wildcard():
 
 
 def test_featurecheck_call_predicate():
-    from pyknow.matchers.rete.check import FeatureCheck
-    from pyknow import P, Fact
+    from experta.matchers.rete.check import FeatureCheck
+    from experta import P, Fact
 
 
     # Positional field not present
@@ -210,8 +210,8 @@ def test_featurecheck_call_predicate():
 
 
 def test_featurecheck_call_not_literal():
-    from pyknow.matchers.rete.check import FeatureCheck
-    from pyknow import L, Fact
+    from experta.matchers.rete.check import FeatureCheck
+    from experta import L, Fact
 
     # Positional matching (negated)
     check = FeatureCheck(0, ~L('somedata'))
@@ -223,8 +223,8 @@ def test_featurecheck_call_not_literal():
 
 
 def test_featurecheck_call_not_predicate():
-    from pyknow.matchers.rete.check import FeatureCheck
-    from pyknow import P, Fact
+    from experta.matchers.rete.check import FeatureCheck
+    from experta import P, Fact
 
     # Positional matching (negated)
     check = FeatureCheck(0, ~P(lambda _: True))
@@ -236,8 +236,8 @@ def test_featurecheck_call_not_predicate():
 
 
 def test_featurecheck_call_not_wildcard():
-    from pyknow.matchers.rete.check import FeatureCheck
-    from pyknow import W, Fact
+    from experta.matchers.rete.check import FeatureCheck
+    from experta import W, Fact
 
     # Positional match (negated)
     check = FeatureCheck(0, ~W())
@@ -249,8 +249,8 @@ def test_featurecheck_call_not_wildcard():
 
 
 def test_featurecheck_call_and():
-    from pyknow.matchers.rete.check import FeatureCheck
-    from pyknow import L, P, W, Fact
+    from experta.matchers.rete.check import FeatureCheck
+    from experta import L, P, W, Fact
 
     # Positional, composed and matching 
     check = FeatureCheck(0, L('mydata') & P(lambda _: True) & W())
@@ -272,8 +272,8 @@ def test_featurecheck_call_or():
     out during DNF.
 
     """
-    from pyknow.matchers.rete.check import FeatureCheck
-    from pyknow import L, P, W, Fact
+    from experta.matchers.rete.check import FeatureCheck
+    from experta import L, P, W, Fact
 
     check = FeatureCheck(0, L('mydata') | P(lambda _: True) & W())
     assert check(Fact('mydata'))

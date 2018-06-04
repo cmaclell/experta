@@ -20,12 +20,12 @@ import time
 
 # -- Project information -----------------------------------------------------
 
-project = 'pyknow'
+project = 'experta'
 copyright = '%d, Roberto Abdelkader Martínez Pérez' % time.localtime().tm_year
 author = 'Roberto Abdelkader Martínez Pérez'
 
 try:
-    version = release = pkg_resources.get_distribution('pyknow').version
+    version = release = pkg_resources.get_distribution('experta').version
 except:
     version = release = 'unknown'
 
@@ -106,7 +106,7 @@ html_static_path = ['_static']
 # -- Options for HTMLHelp output ---------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'pyknowdoc'
+htmlhelp_basename = 'expertadoc'
 
 
 # -- Options for LaTeX output ------------------------------------------------
@@ -133,7 +133,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'pyknow.tex', 'pyknow Documentation',
+    (master_doc, 'experta.tex', 'experta Documentation',
      'Roberto Abdelkader Martínez Pérez', 'manual'),
 ]
 
@@ -143,7 +143,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'pyknow', 'pyknow Documentation',
+    (master_doc, 'experta', 'experta Documentation',
      [author], 1)
 ]
 
@@ -154,8 +154,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'pyknow', 'pyknow Documentation',
-     author, 'pyknow', 'One line description of project.',
+    (master_doc, 'experta', 'experta Documentation',
+     author, 'experta', 'One line description of project.',
      'Miscellaneous'),
 ]
 
