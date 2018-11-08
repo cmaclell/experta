@@ -15,7 +15,7 @@ class Agenda:
     def __repr__(self):  # pragma: no cover
         return "\n".join(
             "{idx}: {rule} {facts}".format(idx=idx,
-                                           rule=act.activation.rule.__name__,
+                                           rule=getattr(act.activation.rule, '__name__', '[anonymous]'),
                                            facts=act.activation.facts)
             for idx, act in enumerate(self.activations))
 
