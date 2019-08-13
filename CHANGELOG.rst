@@ -1,7 +1,14 @@
+1.9.0
++++++
+
+* Use setup.cfg to save all package metadata.
+
+
 1.8.0-1.8.2
 +++++++++++
 
 * Rebranded to Experta.
+
 
 1.7.0
 +++++
