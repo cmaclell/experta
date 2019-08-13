@@ -1,6 +1,16 @@
+CHANGELOG
+---------
+
+1.9.1
++++++
+
+* Resolved #3. Rules should not be called with already retracted facts.
+
+
 1.9.0
 +++++
 
+* Drop Python 3.4 support.
 * Use setup.cfg to save all package metadata.
 
 

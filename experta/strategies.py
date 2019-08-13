@@ -15,16 +15,12 @@ class DepthStrategy(Strategy):
     def _update_agenda(self, agenda, added, removed):
         for act in added:
             act.key = self.get_key(act)
-            bisect.insort_left(agenda.activations, act)
+            bisect.insort(agenda.activations, act)
 
         for act in removed:
+            act.key = self.get_key(act)
             try:
-                act.key = self.get_key(act)
                 idx = bisect.bisect_left(agenda.activations, act)
-                if agenda.activations[idx] == act:
-                    del agenda.activations[idx]
-                elif agenda.activations[idx + 1] == act:
-                    del agenda.activations[idx + 1]
+                del agenda.activations[idx]
             except IndexError:
-                # Already executed rule.
                 pass
