@@ -5,10 +5,10 @@ import collections
 
 from schema import Schema
 
-from pyknow.pattern import Bindable
-from pyknow.utils import freeze, unfreeze
-from pyknow.conditionalelement import OperableCE
-from pyknow.conditionalelement import ConditionalElement
+from experta.pattern import Bindable
+from experta.utils import freeze, unfreeze
+from experta.conditionalelement import OperableCE
+from experta.conditionalelement import ConditionalElement
 
 
 class BaseField(metaclass=abc.ABCMeta):
@@ -35,11 +35,19 @@ class Validable(type):
     def __new__(mcl, name, bases, nmspc):
 
         # Register fields
-        nmspc["__fields__"] = {k: v
-                               for k, v in nmspc.items()
-                               if isinstance(v, BaseField)}
+        newnamespace = {"__fields__": dict()}
+        for base in bases:
+            if isinstance(base, Validable):
+                for key, value in base.__fields__.items():
+                    newnamespace["__fields__"][key] = value
 
-        return super(Validable, mcl).__new__(mcl, name, bases, nmspc)
+        for key, value in nmspc.items():
+            if isinstance(value, BaseField):
+                newnamespace["__fields__"][key] = value
+            else:
+                newnamespace[key] = value
+
+        return super(Validable, mcl).__new__(mcl, name, bases, newnamespace)
 
 
 class Fact(OperableCE, Bindable, dict, metaclass=Validable):
@@ -47,8 +55,8 @@ class Fact(OperableCE, Bindable, dict, metaclass=Validable):
 
     def __init__(self, *args, **kwargs):
         self.update(dict(chain(enumerate(args), kwargs.items())))
+        self.__defaults = dict()
 
-    @lru_cache()
     def __missing__(self, key):
         if key not in self.__fields__:
             raise KeyError(key)
@@ -56,10 +64,12 @@ class Fact(OperableCE, Bindable, dict, metaclass=Validable):
             default = self.__fields__[key].default
             if default is Field.NODEFAULT:
                 raise KeyError(key)
+            elif key in self.__defaults:
+                return self.__defaults[key]
             elif isinstance(default, collections.abc.Callable):
-                return default()
+                return self.__defaults.setdefault(key, default())
             else:
-                return default
+                return self.__defaults.setdefault(key, default)
 
     def __setitem__(self, key, value):
         if self.__factid__ is None:

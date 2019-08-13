@@ -1,7 +1,7 @@
 from collections.abc import Callable
 
-from pyknow.conditionalelement import ConditionalElement
-from pyknow.pattern import Bindable
+from experta.conditionalelement import ConditionalElement
+from experta.pattern import Bindable
 
 __all__ = ['L', 'W', 'P']
 

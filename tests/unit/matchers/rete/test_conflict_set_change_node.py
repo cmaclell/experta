@@ -3,27 +3,27 @@ import pytest
 
 def test_conflictsetchange_exists():
     try:
-        from pyknow.matchers.rete.nodes import ConflictSetNode
+        from experta.matchers.rete.nodes import ConflictSetNode
     except ImportError as exc:
         assert False, exc
 
 
 def test_conflictsetchange_is_abstractnode():
-    from pyknow.matchers.rete.nodes import ConflictSetNode
-    from pyknow.matchers.rete.abstract import OneInputNode
+    from experta.matchers.rete.nodes import ConflictSetNode
+    from experta.matchers.rete.abstract import OneInputNode
 
     assert issubclass(ConflictSetNode, OneInputNode)
 
 
 def test_conflictsetchange_interface():
-    from pyknow.matchers.rete.nodes import ConflictSetNode
+    from experta.matchers.rete.nodes import ConflictSetNode
 
     assert hasattr(ConflictSetNode, 'get_activations')
 
 
 def test_conflictsetchange_accepts_rule():
-    from pyknow.matchers.rete.nodes import ConflictSetNode
-    from pyknow.rule import Rule
+    from experta.matchers.rete.nodes import ConflictSetNode
+    from experta.rule import Rule
 
     # MUST NOT RAISE
     ConflictSetNode(Rule())
@@ -33,10 +33,10 @@ def test_conflictsetchange_accepts_rule():
 
 
 def test_conflictsetchange_valid_adds_to_memory():
-    from pyknow.fact import Fact
-    from pyknow.matchers.rete.nodes import ConflictSetNode
-    from pyknow.matchers.rete.token import Token, TokenInfo
-    from pyknow.rule import Rule
+    from experta.fact import Fact
+    from experta.matchers.rete.nodes import ConflictSetNode
+    from experta.matchers.rete.token import Token, TokenInfo
+    from experta.rule import Rule
 
     csn = ConflictSetNode(Rule())
 
@@ -49,10 +49,10 @@ def test_conflictsetchange_valid_adds_to_memory():
 
 
 def test_conflictsetchange_invalid_removes_from_memory():
-    from pyknow.fact import Fact
-    from pyknow.matchers.rete.nodes import ConflictSetNode
-    from pyknow.matchers.rete.token import Token, TokenInfo
-    from pyknow.rule import Rule
+    from experta.fact import Fact
+    from experta.matchers.rete.nodes import ConflictSetNode
+    from experta.matchers.rete.token import Token, TokenInfo
+    from experta.rule import Rule
 
     csn = ConflictSetNode(Rule())
 
@@ -67,10 +67,10 @@ def test_conflictsetchange_invalid_removes_from_memory():
 
 
 def test_conflictsetchange_get_activations_data():
-    from pyknow.matchers.rete.nodes import ConflictSetNode
-    from pyknow.matchers.rete.token import Token
-    from pyknow.rule import Rule
-    from pyknow.fact import Fact
+    from experta.matchers.rete.nodes import ConflictSetNode
+    from experta.matchers.rete.token import Token
+    from experta.rule import Rule
+    from experta.fact import Fact
 
     rule = Rule()
     csn = ConflictSetNode(rule)

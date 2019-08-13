@@ -9,63 +9,63 @@ from hypothesis import strategies as st
 
 
 def test_KnowledgeEngine_has__facts():
-    from pyknow.engine import KnowledgeEngine
+    from experta.engine import KnowledgeEngine
     ke = KnowledgeEngine()
     assert hasattr(ke, 'facts')
 
 
 def test_KnowledgeEngine__facts_is_FactList():
-    from pyknow.engine import KnowledgeEngine
-    from pyknow.factlist import FactList
+    from experta.engine import KnowledgeEngine
+    from experta.factlist import FactList
 
     ke = KnowledgeEngine()
     assert isinstance(ke.facts, FactList)
 
 
 def test_KnowledgeEngine_has_declare():
-    from pyknow.engine import KnowledgeEngine
+    from experta.engine import KnowledgeEngine
     ke = KnowledgeEngine()
     assert hasattr(ke, 'declare')
 
 
 def test_KnowledgeEngine_declare_define_fact():
-    from pyknow.engine import KnowledgeEngine
-    from pyknow import Fact
+    from experta.engine import KnowledgeEngine
+    from experta import Fact
     from unittest.mock import patch
 
     ke = KnowledgeEngine()
-    with patch('pyknow.factlist.FactList') as mock:
+    with patch('experta.factlist.FactList') as mock:
         ke.facts = mock
         ke.declare(Fact())
         assert mock.declare.called
 
 
 def test_KnowledgeEngine_has_retract():
-    from pyknow.engine import KnowledgeEngine
+    from experta.engine import KnowledgeEngine
 
     assert hasattr(KnowledgeEngine, 'retract')
 
 
 def test_KnowledgeEngine_retract_retracts_fact():
-    from pyknow.engine import KnowledgeEngine
+    from experta.engine import KnowledgeEngine
     from unittest.mock import patch
 
     ke = KnowledgeEngine()
-    with patch('pyknow.factlist.FactList') as mock:
+    with patch('experta.factlist.FactList') as mock:
         ke.facts = mock
         ke.retract({'__factid__': (0, )})
         assert mock.retract.called
 
 
 def test_KnowledgeEngine_has_agenda():
-    from pyknow.engine import KnowledgeEngine
+    from experta.engine import KnowledgeEngine
     ke = KnowledgeEngine()
     assert hasattr(ke, 'agenda')
 
 
 def test_KnowledgeEngine_agenda_is_Agenda():
-    from pyknow.engine import KnowledgeEngine
-    from pyknow.agenda import Agenda
+    from experta.engine import KnowledgeEngine
+    from experta.agenda import Agenda
 
     ke = KnowledgeEngine()
 
@@ -73,27 +73,27 @@ def test_KnowledgeEngine_agenda_is_Agenda():
 
 
 def test_KnowledgeEngine_default_strategy_is_Depth():
-    from pyknow.engine import KnowledgeEngine
-    from pyknow.strategies import DepthStrategy
+    from experta.engine import KnowledgeEngine
+    from experta.strategies import DepthStrategy
 
     assert KnowledgeEngine.__strategy__ is DepthStrategy
 
 
 def test_KnowledgeEngine_default_strategy_is_Depth_instance():
-    from pyknow.engine import KnowledgeEngine
-    from pyknow.strategies import DepthStrategy
+    from experta.engine import KnowledgeEngine
+    from experta.strategies import DepthStrategy
 
     assert isinstance(KnowledgeEngine().strategy, DepthStrategy)
 
 
 def test_KnowledgeEngine_has_get_rules_property():
-    from pyknow.engine import KnowledgeEngine
+    from experta.engine import KnowledgeEngine
 
     assert hasattr(KnowledgeEngine, 'get_rules')
 
 
 def test_KnowledgeEngine_get_rules_return_empty_list():
-    from pyknow.engine import KnowledgeEngine
+    from experta.engine import KnowledgeEngine
 
     ke = KnowledgeEngine()
 
@@ -101,9 +101,9 @@ def test_KnowledgeEngine_get_rules_return_empty_list():
 
 
 def test_KnowledgeEngine_get_rules_returns_the_list_of_rules():
-    from pyknow.engine import KnowledgeEngine
-    from pyknow import Rule
-    from pyknow import InitialFact
+    from experta.engine import KnowledgeEngine
+    from experta import Rule
+    from experta import InitialFact
 
     class Test(KnowledgeEngine):
         @Rule(InitialFact())
@@ -123,13 +123,13 @@ def test_KnowledgeEngine_get_rules_returns_the_list_of_rules():
 
 
 def test_KnowledgeEngine_get_activations_exists():
-    from pyknow.engine import KnowledgeEngine
+    from experta.engine import KnowledgeEngine
 
     assert hasattr(KnowledgeEngine, 'get_activations')
 
 
 def test_KnowledgeEngine_get_activations_returns_a_list():
-    from pyknow.engine import KnowledgeEngine
+    from experta.engine import KnowledgeEngine
     ke = KnowledgeEngine()
 
     res = ke.get_activations()
@@ -140,9 +140,9 @@ def test_KnowledgeEngine_get_activations_returns_a_list():
 
 
 def test_KnowledgeEngine_get_activations_returns_activations_added():
-    from pyknow.engine import KnowledgeEngine
-    from pyknow import Rule
-    from pyknow import Fact
+    from experta.engine import KnowledgeEngine
+    from experta import Rule
+    from experta import Fact
 
     class Test(KnowledgeEngine):
         @Rule(Fact(a=1),
@@ -163,17 +163,17 @@ def test_KnowledgeEngine_get_activations_returns_activations_added():
 
 
 def test_KnowledgeEngine_has_run():
-    from pyknow.engine import KnowledgeEngine
+    from experta.engine import KnowledgeEngine
     assert hasattr(KnowledgeEngine, 'run')
 
 
 def test_KnowledgeEngine_has_reset():
-    from pyknow.engine import KnowledgeEngine
+    from experta.engine import KnowledgeEngine
     assert hasattr(KnowledgeEngine, 'reset')
 
 
 def test_KnowledgeEngine_reset_resets_agenda():
-    from pyknow.engine import KnowledgeEngine
+    from experta.engine import KnowledgeEngine
     ke = KnowledgeEngine()
     ke.agenda = None
 
@@ -182,7 +182,7 @@ def test_KnowledgeEngine_reset_resets_agenda():
 
 
 def test_KnowledgeEngine_reset_resets_facts():
-    from pyknow.engine import KnowledgeEngine
+    from experta.engine import KnowledgeEngine
     ke = KnowledgeEngine()
     ke.facts = None
 
@@ -191,7 +191,7 @@ def test_KnowledgeEngine_reset_resets_facts():
 
 
 def test_KnowledgeEngine_reset_declare_initialfact():
-    from pyknow.engine import KnowledgeEngine
+    from experta.engine import KnowledgeEngine
 
     ke = KnowledgeEngine()
     ke.reset()
@@ -200,8 +200,8 @@ def test_KnowledgeEngine_reset_declare_initialfact():
 
 
 def test_KnowledgeEngine_run_1_fires_activation():
-    from pyknow.engine import KnowledgeEngine
-    from pyknow import Rule
+    from experta.engine import KnowledgeEngine
+    from experta import Rule
 
     executed = False
 
@@ -223,8 +223,8 @@ def test_KnowledgeEngine_run_1_fires_activation():
 
 
 def test_KnowledgeEngine_run_fires_all_activation():
-    from pyknow.engine import KnowledgeEngine
-    from pyknow import Rule
+    from experta.engine import KnowledgeEngine
+    from experta import Rule
 
     executed = 0
 
@@ -254,8 +254,8 @@ def test_KnowledgeEngine_run_fires_all_activation():
 
 
 def test_KnowledgeEngine_has_initialfacts():
-    from pyknow.engine import KnowledgeEngine
-    from pyknow import InitialFact
+    from experta.engine import KnowledgeEngine
+    from experta import InitialFact
 
     assert list(KnowledgeEngine()._declare_initial_fact()) == [InitialFact()]
 
@@ -268,9 +268,9 @@ def test_KnowledgeEngine_reset():
     And that if we add a normal fact after that, it's not persistent
     """
 
-    from pyknow.engine import KnowledgeEngine
-    from pyknow.deffacts import DefFacts
-    from pyknow import Fact
+    from experta.engine import KnowledgeEngine
+    from experta.deffacts import DefFacts
+    from experta import Fact
 
     class KE1(KnowledgeEngine):
         @DefFacts()
@@ -297,9 +297,9 @@ def test_KnowledgeEngine_reset():
 @given(to_declare_random=st.lists(st.integers()))
 def test_rules_are_executed_once(to_declare_random):
     from random import shuffle
-    from pyknow.engine import KnowledgeEngine
-    from pyknow import Rule, DefFacts
-    from pyknow import Fact, L
+    from experta.engine import KnowledgeEngine
+    from experta import Rule, DefFacts
+    from experta import Fact, L
 
     executions = []
     to_declare = list(set(to_declare_random + [1, 2, 3]))
@@ -335,9 +335,9 @@ def test_default_is_and():
     Test that AND is the default behavior
     """
     from collections import defaultdict
-    from pyknow.engine import KnowledgeEngine
-    from pyknow import Rule, DefFacts
-    from pyknow import Fact, L
+    from experta.engine import KnowledgeEngine
+    from experta import Rule, DefFacts
+    from experta import Fact, L
 
     executions = []
 
@@ -373,9 +373,9 @@ def test_or_notmatching_operator():
     """
     Test OR operator
     """
-    from pyknow.engine import KnowledgeEngine
-    from pyknow import Rule, OR, DefFacts
-    from pyknow import Fact, L
+    from experta.engine import KnowledgeEngine
+    from experta import Rule, OR, DefFacts
+    from experta import Fact, L
 
     class Test(KnowledgeEngine):
         """ Test KE """
@@ -399,9 +399,9 @@ def test_or_operator():
     """
     Test OR operator
     """
-    from pyknow.engine import KnowledgeEngine
-    from pyknow import Rule, OR
-    from pyknow import Fact, L
+    from experta.engine import KnowledgeEngine
+    from experta import Rule, OR
+    from experta import Fact, L
 
     class Test(KnowledgeEngine):
         """ Test KE """
@@ -428,9 +428,9 @@ def test_or_operator():
 
 
 def test_ke_inheritance():
-    from pyknow import Rule
-    from pyknow import Fact, L
-    from pyknow.engine import KnowledgeEngine
+    from experta import Rule
+    from experta import Fact, L
+    from experta.engine import KnowledgeEngine
 
     executed = False
 
@@ -457,9 +457,9 @@ def test_ke_inheritance():
 
 
 def test_nested_declarations():
-    from pyknow import Rule
-    from pyknow import Fact, L
-    from pyknow.engine import KnowledgeEngine
+    from experta import Rule
+    from experta import Fact, L
+    from experta.engine import KnowledgeEngine
 
     class Person(Fact):
         pass
@@ -484,9 +484,9 @@ def test_nested_declarations():
 
 
 def test_matching_different_number_of_arguments():
-    from pyknow import Rule
-    from pyknow import Fact, L
-    from pyknow.engine import KnowledgeEngine
+    from experta import Rule
+    from experta import Fact, L
+    from experta.engine import KnowledgeEngine
 
     class Person(Fact):
         pass
@@ -511,9 +511,9 @@ def test_matching_different_number_of_arguments():
 
 
 def test_matching_captured_different_facts_AND():
-    from pyknow import Rule
-    from pyknow import Fact, W, L
-    from pyknow.engine import KnowledgeEngine
+    from experta import Rule
+    from experta import Fact, W, L
+    from experta.engine import KnowledgeEngine
 
     class Person(Fact):
         pass
@@ -563,9 +563,9 @@ def test_matching_captured_same_facts_AND():
         FIRE    1 test_clips: f-1,f-2
 
     """
-    from pyknow import Rule
-    from pyknow import Fact, L, W
-    from pyknow.engine import KnowledgeEngine
+    from experta import Rule
+    from experta import Fact, L, W
+    from experta.engine import KnowledgeEngine
 
     class Person(Fact):
         pass
@@ -594,9 +594,9 @@ def test_matching_captured_different_facts_NOT_positive():
     Positive test (returning activation because there were
     NO matches (the NOT is therefore executed).
     """
-    from pyknow import Rule, NOT
-    from pyknow import Fact, L, W
-    from pyknow.engine import KnowledgeEngine
+    from experta import Rule, NOT
+    from experta import Fact, L, W
+    from experta.engine import KnowledgeEngine
 
     class Person(Fact):
         pass
@@ -625,9 +625,9 @@ def test_matching_captured_different_facts_NOT_negative():
     Negative test (returning no activation because there were
     matches (the NOT is therefore not executed).
     """
-    from pyknow import Rule, NOT
-    from pyknow import Fact, W, L
-    from pyknow.engine import KnowledgeEngine
+    from experta import Rule, NOT
+    from experta import Fact, W, L
+    from experta.engine import KnowledgeEngine
 
     class Person(Fact):
         pass
@@ -650,9 +650,9 @@ def test_matching_captured_different_facts_NOT_negative():
 
 
 def test_and_negated_variable__bad_definition():
-    from pyknow import Rule, NOT
-    from pyknow import Fact, W
-    from pyknow.engine import KnowledgeEngine
+    from experta import Rule, NOT
+    from experta import Fact, W
+    from experta.engine import KnowledgeEngine
 
     class Person(Fact):
         pass
@@ -674,9 +674,9 @@ def test_and_negated_variable__bad_definition():
 
 
 def test_and_negated_variable__positive_match():
-    from pyknow import Rule, NOT
-    from pyknow import Fact, W
-    from pyknow.engine import KnowledgeEngine
+    from experta import Rule, NOT
+    from experta import Fact, W
+    from experta.engine import KnowledgeEngine
 
     class Person(Fact):
         pass
@@ -699,9 +699,9 @@ def test_and_negated_variable__positive_match():
 
 
 def test_and_negated_variable__negative_match():
-    from pyknow import Rule, NOT
-    from pyknow import Fact, W
-    from pyknow.engine import KnowledgeEngine
+    from experta import Rule, NOT
+    from experta import Fact, W
+    from experta.engine import KnowledgeEngine
 
     class Person(Fact):
         pass
@@ -724,9 +724,9 @@ def test_and_negated_variable__negative_match():
 
 
 def test_not_aggregation():
-    from pyknow import Rule, NOT, AND
-    from pyknow import Fact, W
-    from pyknow.engine import KnowledgeEngine
+    from experta import Rule, NOT, AND
+    from experta import Fact, W
+    from experta.engine import KnowledgeEngine
 
     class Person(Fact):
         pass
@@ -778,7 +778,7 @@ def test_not_aggregation():
 
 
 def test_declare_raises_typeerror_if_conditionalelement_found():
-    from pyknow import KnowledgeEngine, L, W, P, Fact
+    from experta import KnowledgeEngine, L, W, P, Fact
 
     ke = KnowledgeEngine()
 
@@ -802,7 +802,7 @@ def test_declare_raises_typeerror_if_conditionalelement_found():
 
 
 def test_retract_while_not_running_remove_activations():
-    from pyknow import KnowledgeEngine, Rule
+    from experta import KnowledgeEngine, Rule
 
     class KE(KnowledgeEngine):
         @Rule()
@@ -817,7 +817,7 @@ def test_retract_while_not_running_remove_activations():
 
 
 def test_halt_stops_execution():
-    from pyknow import KnowledgeEngine, Rule
+    from experta import KnowledgeEngine, Rule
 
     class KE(KnowledgeEngine):
         @Rule(salience=1)
@@ -834,7 +834,7 @@ def test_halt_stops_execution():
 
 
 def test_matcher_must_be_Matcher():
-    from pyknow import KnowledgeEngine
+    from experta import KnowledgeEngine
 
     class KE(KnowledgeEngine):
         __matcher__ = None
@@ -844,7 +844,7 @@ def test_matcher_must_be_Matcher():
 
 
 def test_strategy_must_be_Strategy():
-    from pyknow import KnowledgeEngine
+    from experta import KnowledgeEngine
 
     class KE(KnowledgeEngine):
         __strategy__ = False
@@ -854,7 +854,7 @@ def test_strategy_must_be_Strategy():
 
 
 def test_modify_retracts_and_declare():
-    from pyknow import KnowledgeEngine, Fact
+    from experta import KnowledgeEngine, Fact
 
     ke = KnowledgeEngine()
 
@@ -870,7 +870,7 @@ def test_modify_retracts_and_declare():
 
 
 def test_duplicate_declare():
-    from pyknow import KnowledgeEngine, Fact
+    from experta import KnowledgeEngine, Fact
 
     ke = KnowledgeEngine()
 
@@ -885,7 +885,7 @@ def test_duplicate_declare():
 
 
 def test_reset_kwargs_are_passed_to_deffacts_named():
-    from pyknow import KnowledgeEngine, DefFacts, Fact
+    from experta import KnowledgeEngine, DefFacts, Fact
 
     passed = False
 
@@ -902,7 +902,7 @@ def test_reset_kwargs_are_passed_to_deffacts_named():
 
 
 def test_reset_kwargs_are_passed_to_deffacts_kwargs():
-    from pyknow import KnowledgeEngine, DefFacts, Fact
+    from experta import KnowledgeEngine, DefFacts, Fact
 
     passed = False
 
@@ -919,7 +919,7 @@ def test_reset_kwargs_are_passed_to_deffacts_kwargs():
 
 
 def test_reset_kwargs_are_passed_to_deffacts_mixed():
-    from pyknow import KnowledgeEngine, DefFacts, Fact
+    from experta import KnowledgeEngine, DefFacts, Fact
 
     passed = False
 
@@ -936,7 +936,7 @@ def test_reset_kwargs_are_passed_to_deffacts_mixed():
 
 
 def test_reset_kwargs_are_passed_to_multiple_deffacts():
-    from pyknow import KnowledgeEngine, DefFacts, Fact
+    from experta import KnowledgeEngine, DefFacts, Fact
 
     passed = set()
 

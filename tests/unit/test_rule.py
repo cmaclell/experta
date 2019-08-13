@@ -2,7 +2,7 @@ import pytest
 
 
 def test_Rule_can_decorate_function():
-    from pyknow import Rule
+    from experta import Rule
 
     called = False
 
@@ -17,7 +17,7 @@ def test_Rule_can_decorate_function():
 
 
 def test_Rule_can_decorate_function_with_one_parameter():
-    from pyknow import Rule
+    from experta import Rule
 
     called = False
 
@@ -32,7 +32,7 @@ def test_Rule_can_decorate_function_with_one_parameter():
 
 
 def test_Rule_can_decorate_function_with_multiple_positional_args():
-    from pyknow import Rule
+    from experta import Rule
 
     called = False
 
@@ -49,7 +49,7 @@ def test_Rule_can_decorate_function_with_multiple_positional_args():
 
 
 def test_Rule_can_decorate_function_with_mixed_args():
-    from pyknow import Rule
+    from experta import Rule
 
     called = False
 
@@ -68,7 +68,7 @@ def test_Rule_can_decorate_function_with_mixed_args():
 
 
 def test_Rule_decorated_function_raise_TypeError_on_bad_arguments():
-    from pyknow import Rule
+    from experta import Rule
     # pylint: disable=unused-argument, no-value-for-parameter
 
     called = False
@@ -85,14 +85,14 @@ def test_Rule_decorated_function_raise_TypeError_on_bad_arguments():
 
 
 def test_Rule_decorator_raise_AttributeError_if_called_without_function():
-    from pyknow import Rule
+    from experta import Rule
 
     with pytest.raises(AttributeError):
         Rule()()
 
 
 def test_Rule_decorated_function_is_instance_of_Rule():
-    from pyknow import Rule
+    from experta import Rule
 
     @Rule()
     def myfunction():
@@ -102,7 +102,7 @@ def test_Rule_decorated_function_is_instance_of_Rule():
 
 
 def test_Rule_decorator_store_salience():
-    from pyknow import Rule
+    from experta import Rule
 
     @Rule(salience=10)
     def myfunction():
@@ -112,8 +112,8 @@ def test_Rule_decorator_store_salience():
 
 
 def test_Rule_is_iterable():
-    from pyknow import Rule
-    from pyknow import Fact
+    from experta import Rule
+    from experta import Fact
 
     rule_ = iter(Rule(Fact(a=1), Fact(a=2)))
     assert next(rule_) == Fact(a=1)
@@ -123,7 +123,7 @@ def test_Rule_is_iterable():
 
 
 def test_Rule_can_decorate_method():
-    from pyknow import Rule
+    from experta import Rule
 
     called = False
 
@@ -140,7 +140,7 @@ def test_Rule_can_decorate_method():
 
 
 def test_Rule_can_decorate_method_with_one_parameter():
-    from pyknow import Rule
+    from experta import Rule
 
     called = False
 
@@ -158,7 +158,7 @@ def test_Rule_can_decorate_method_with_one_parameter():
 
 
 def test_Rule_can_decorate_method_with_multiple_positional_args():
-    from pyknow import Rule
+    from experta import Rule
 
     called = False
 
@@ -178,7 +178,7 @@ def test_Rule_can_decorate_method_with_multiple_positional_args():
 
 
 def test_Rule_can_decorate_method_with_mixed_args():
-    from pyknow import Rule
+    from experta import Rule
 
     called = False
 
@@ -199,7 +199,7 @@ def test_Rule_can_decorate_method_with_mixed_args():
 
 
 def test_Rule_method_can_skip_captured_values():
-    from pyknow import KnowledgeEngine, Fact, Rule, AS, MATCH
+    from experta import KnowledgeEngine, Fact, Rule, AS, MATCH
 
     called = False
 
@@ -218,7 +218,7 @@ def test_Rule_method_can_skip_captured_values():
 
 
 def test_Rule_method_receive_partial_captured_values():
-    from pyknow import KnowledgeEngine, Fact, Rule, MATCH
+    from experta import KnowledgeEngine, Fact, Rule, MATCH
 
     called = False
 
@@ -238,7 +238,7 @@ def test_Rule_method_receive_partial_captured_values():
 
 
 def test_Rule_method_receive_partial_captured_optional_values():
-    from pyknow import KnowledgeEngine, Fact, Rule, MATCH
+    from experta import KnowledgeEngine, Fact, Rule, MATCH
 
     called = False
 
@@ -258,7 +258,7 @@ def test_Rule_method_receive_partial_captured_optional_values():
 
 
 def test_Rule_method_receive_non_named_values_in_kwargs():
-    from pyknow import KnowledgeEngine, Fact, Rule, MATCH
+    from experta import KnowledgeEngine, Fact, Rule, MATCH
 
     called = False
 

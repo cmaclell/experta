@@ -1,7 +1,7 @@
 """Abstract base classes for the RETE implementation."""
 import abc
 
-from pyknow import watchers
+from experta import watchers
 
 
 class Node(metaclass=abc.ABCMeta):

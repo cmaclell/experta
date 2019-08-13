@@ -391,7 +391,7 @@ Is exactly the same as:
 
 .. warning::
 
-   This behavior will vary in future releases of PyKnow and the string flavour
+   This behavior will vary in future releases of Experta and the string flavour
    of the operator may disappear.
 
 
@@ -473,11 +473,11 @@ can use numeric indexes as needed.
 Mutable objects
 ---------------
 
-PyKnow's matching algorithm depends on the values of the declared facts being
+Experta's matching algorithm depends on the values of the declared facts being
 immutable.
 
 When a `Fact` is created, all its values are transformed to an immutable type
-if they are not. For this matter the method `pyknow.utils.freeze` is used
+if they are not. For this matter the method `experta.utils.freeze` is used
 internally.
 
 
@@ -502,7 +502,7 @@ internally.
 
 .. note::
 
-   You can import `frozendict` and `frozenlist` from `pyknow.utils` module.
+   You can import `frozendict` and `frozenlist` from `experta.utils` module.
    However `frozenset` is a Python built-in type.
 
 
@@ -514,7 +514,7 @@ register a specialized type freezer for your custom type.
 
 .. code-block:: python
 
-   >>> from pyknow.utils import freeze
+   >>> from experta.utils import freeze
    >>> @freeze.register(MyType)
    ... def freeze_mytype(obj):
    ...     return ... # My frozen version of my type
@@ -523,7 +523,7 @@ register a specialized type freezer for your custom type.
 Unfreeze frozen objects
 +++++++++++++++++++++++
 
-To easily unfreeze the frozen objects `pyknow.utils` contains an `unfreeze` method.
+To easily unfreeze the frozen objects `experta.utils` contains an `unfreeze` method.
 
 .. code-block:: python
 

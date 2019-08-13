@@ -2,7 +2,7 @@ import pytest
 
 
 def test_self_referencing_fact():
-    from pyknow import KnowledgeEngine, Rule, Fact, W
+    from experta import KnowledgeEngine, Rule, Fact, W
 
     result = []
 
@@ -25,7 +25,7 @@ def test_self_referencing_fact():
 
 
 def test_self_referencing_fact_with_negation():
-    from pyknow import KnowledgeEngine, Rule, Fact, W
+    from experta import KnowledgeEngine, Rule, Fact, W
 
     result = []
 
@@ -48,7 +48,7 @@ def test_self_referencing_fact_with_negation():
 
 
 def test_or_with_multiple_nots_get_multiple_activations():
-    from pyknow import KnowledgeEngine, Rule, Fact
+    from experta import KnowledgeEngine, Rule, Fact
 
     executions = 0
 
@@ -66,7 +66,7 @@ def test_or_with_multiple_nots_get_multiple_activations():
 
 
 def test_initial_not_vs_and_not():
-    from pyknow import KnowledgeEngine, Rule, Fact, DefFacts
+    from experta import KnowledgeEngine, Rule, Fact, DefFacts
 
     executions = 0
 
@@ -117,7 +117,7 @@ def test_initial_not_vs_and_not():
 
 def test_TEST_1():
     from collections import Counter
-    from pyknow import KnowledgeEngine, Rule, Fact, TEST, W
+    from experta import KnowledgeEngine, Rule, Fact, TEST, W
 
     executed = Counter()
 
@@ -145,7 +145,7 @@ def test_TEST_1():
 
 def test_TEST_2():
     from collections import Counter
-    from pyknow import KnowledgeEngine, Rule, Fact, TEST, W
+    from experta import KnowledgeEngine, Rule, Fact, TEST, W
 
     executed = Counter()
 
@@ -177,7 +177,7 @@ def test_TEST_2():
 
 def test_TEST_3():
     from collections import Counter
-    from pyknow import KnowledgeEngine, Rule, Fact, TEST, W
+    from experta import KnowledgeEngine, Rule, Fact, TEST, W
 
     executed = 0
 
@@ -201,7 +201,7 @@ def test_TEST_3():
 
 def test_TEST_4():
     from collections import Counter
-    from pyknow import KnowledgeEngine, Rule, Fact, TEST, W
+    from experta import KnowledgeEngine, Rule, Fact, TEST, W
 
     executed = 0
 
@@ -223,7 +223,7 @@ def test_TEST_4():
 
 
 def test_EXISTS_1():
-    from pyknow import KnowledgeEngine, Rule, Fact, EXISTS
+    from experta import KnowledgeEngine, Rule, Fact, EXISTS
 
     executed = 0
 
@@ -245,7 +245,7 @@ def test_EXISTS_1():
 
 
 def test_FORALL_1():
-    from pyknow import KnowledgeEngine, Rule, Fact, FORALL, W
+    from experta import KnowledgeEngine, Rule, Fact, FORALL, W
 
     executed = 0
 
@@ -283,7 +283,7 @@ def test_FORALL_1():
 
 
 def test_fact_capture():
-    from pyknow import KnowledgeEngine, Rule, Fact
+    from experta import KnowledgeEngine, Rule, Fact
 
     executed = None
 
@@ -301,7 +301,7 @@ def test_fact_capture():
 
 
 def test_OR_not_allow_inside_FORALL_nor_EXISTS():
-    from pyknow import KnowledgeEngine, Fact, Rule, FORALL, EXISTS, OR
+    from experta import KnowledgeEngine, Fact, Rule, FORALL, EXISTS, OR
 
     class KE(KnowledgeEngine):
         @Rule(EXISTS(OR(Fact(), Fact())))
@@ -321,7 +321,7 @@ def test_OR_not_allow_inside_FORALL_nor_EXISTS():
 
 
 def test_ANDNOT_reactivation():
-    from pyknow import KnowledgeEngine, Fact, Rule, NOT, W
+    from experta import KnowledgeEngine, Fact, Rule, NOT, W
 
     class KE(KnowledgeEngine):
         @Rule(Fact(x='x' << W()),
@@ -353,7 +353,7 @@ def test_ANDNOT_reactivation():
 
 
 def test_OR_inside_Rule():
-    from pyknow import KnowledgeEngine, OR, Fact, Rule
+    from experta import KnowledgeEngine, OR, Fact, Rule
 
     class KE(KnowledgeEngine):
         @Rule(Fact(1),
@@ -400,7 +400,7 @@ def test_OR_inside_Rule():
 
 
 def test_nested_values_dict():
-    from pyknow import KnowledgeEngine, Fact, Rule
+    from experta import KnowledgeEngine, Fact, Rule
 
     class KE(KnowledgeEngine):
         @Rule(Fact(key__with__nested__dicts=1))
@@ -419,7 +419,7 @@ def test_nested_values_dict():
 
 
 def test_nested_values_dict_and_lists():
-    from pyknow import KnowledgeEngine, Fact, Rule
+    from experta import KnowledgeEngine, Fact, Rule
 
     class KE(KnowledgeEngine):
         @Rule(Fact(key__0__with__nested__1__dicts=1))

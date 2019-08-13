@@ -17,14 +17,14 @@ Features
 * Matcher based on the RETE algorithm.
 
 
-Difference between CLIPS and PyKnow
+Difference between CLIPS and Experta
 -----------------------------------
 
-#. CLIPS is a programming language, PyKnow is a Python library. This
+#. CLIPS is a programming language, Experta is a Python library. This
    imposes some limitations on the constructions we can do (specially on
    the LHS of a rule).
 
-#. CLIPS is written in C, PyKnow in Python. A noticeable impact in
+#. CLIPS is written in C, Experta in Python. A noticeable impact in
    performance is to be expected.
 
 #. In CLIPS you add facts using `assert`, in Python `assert` is a

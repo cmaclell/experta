@@ -1,4 +1,4 @@
-from pyknow.fact import BaseField, Field
+from experta.fact import BaseField, Field
 
 
 def test_basefield_interface():

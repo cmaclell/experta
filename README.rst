@@ -1,31 +1,16 @@
-PyKnow: Expert Systems for Python
-=================================
+=========
+|Experta|  
+=========
 
-.. image:: https://img.shields.io/pypi/v/pyknow.svg
-    :target: https://pypi.python.org/pypi/pyknow
+|pypi| |version| |tests| |docs| |coverage|
 
-.. image:: https://img.shields.io/pypi/pyversions/pyknow.svg
-    :target: https://pypi.python.org/pypi/pyknow
-
-.. image:: https://travis-ci.org/buguroo/pyknow.svg?branch=master
-    :target: https://travis-ci.org/buguroo/pyknow
-
-.. image:: https://readthedocs.org/projects/pyknow/badge/?version=stable
-    :target: https://readthedocs.org/projects/pyknow/?badge=stable
-    :alt: Documentation Status
-
-.. image:: https://codecov.io/gh/buguroo/pyknow/branch/develop/graph/badge.svg
-    :target: https://codecov.io/gh/buguroo/pyknow
-    :alt: codecov.io
-
-
-PyKnow is a Python library for building expert systems strongly inspired
+Experta is a Python library for building expert systems strongly inspired
 by CLIPS_.
 
 .. code-block:: python
 
    from random import choice
-   from pyknow import *
+   from experta import *
 
 
    class Light(Fact):
@@ -56,8 +41,35 @@ by CLIPS_.
    Be cautious because light is blinking-yellow
 
 
+Migrating from Pyknow
+---------------------
+
+Experta is a Pyknow fork. Just replace any `pyknow` references in your
+code/examples to `experta` and everything should work the same.
+
+
+Examples
+--------
+
 You can find some more examples on GitHub_.
 
 .. _CLIPS: http://clipsrules.sourceforge.net
-.. _GitHub: https://github.com/buguroo/pyknow/tree/develop/docs
+.. _GitHub: https://github.com/nilp0inter/experta/tree/develop/docs
+.. |Experta| image:: https://raw.githubusercontent.com/nilp0inter/experta/develop/docs/static/expertalogo_small.png
+.. |pypi| image:: https://img.shields.io/pypi/v/experta.svg
+    :target: https://pypi.python.org/pypi/experta
+
+.. |version| image:: https://img.shields.io/pypi/pyversions/experta.svg
+    :target: https://pypi.python.org/pypi/experta
+
+.. |tests| image:: https://travis-ci.org/nilp0inter/experta.svg?branch=master
+    :target: https://travis-ci.org/nilp0inter/experta
+
+.. |docs| image:: https://readthedocs.org/projects/experta/badge/?version=stable
+    :target: https://readthedocs.org/projects/experta/?badge=stable
+    :alt: Documentation Status
+
+.. |coverage| image:: https://codecov.io/gh/nilp0inter/experta/branch/develop/graph/badge.svg
+    :target: https://codecov.io/gh/nilp0inter/experta
+    :alt: codecov.io
 

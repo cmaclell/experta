@@ -15,14 +15,14 @@ from collections import Counter
 from .check import TypeCheck, FactCapture, FeatureCheck
 from .nodes import BusNode, ConflictSetNode, FeatureTesterNode
 from .utils import prepare_rule, extract_facts, generate_checks, wire_rule
-from pyknow import OR
-from pyknow.rule import Rule
-from pyknow.fact import InitialFact
-from pyknow.abstract import Matcher
+from experta import OR
+from experta.rule import Rule
+from experta.fact import InitialFact
+from experta.abstract import Matcher
 
 
 class ReteMatcher(Matcher):
-    """RETE algorithm with `pyknow` matcher interface."""
+    """RETE algorithm with `experta` matcher interface."""
 
     def __init__(self, *args, **kwargs):
         """Create the RETE network for `self.engine`."""

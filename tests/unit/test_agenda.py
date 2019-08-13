@@ -6,7 +6,7 @@ Tests related to the agenda object
 def test_agenda_has_activations():
     """ Agenda object has activations property """
 
-    from pyknow.agenda import Agenda
+    from experta.agenda import Agenda
     from collections import deque
     assert hasattr(Agenda(), "activations")
 
@@ -17,7 +17,7 @@ def test_agenda_get_next():
     into executed
     """
 
-    from pyknow.agenda import Agenda
+    from experta.agenda import Agenda
     agenda = Agenda()
 
     agenda.activations.append("Foo")

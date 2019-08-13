@@ -4,7 +4,7 @@ from collections import namedtuple
 from collections.abc import Mapping
 from enum import Enum
 
-from pyknow.fact import Fact
+from experta.fact import Fact
 
 
 class TokenInfo(namedtuple('_TokenInfo', ['data', 'context'])):

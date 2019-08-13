@@ -3,7 +3,7 @@ import pytest
 
 def test_conditionalelement_exists():
     try:
-        from pyknow import conditionalelement
+        from experta import conditionalelement
     except ImportError as exc:
         assert False, exc
 
@@ -15,6 +15,6 @@ def test_conditionalelement_exists():
                                   'EXISTS',
                                   'FORALL'])
 def test_existence_of_conditional_elements(name):
-    from pyknow import conditionalelement
+    from experta import conditionalelement
 
     assert hasattr(conditionalelement, name)

@@ -10,8 +10,8 @@ Also see `retrieving the fact-list \
 """
 
 from collections import OrderedDict, Counter
-from pyknow.fact import Fact
-from pyknow import watchers
+from experta.fact import Fact
+from experta import watchers
 
 
 class FactList(OrderedDict):
@@ -19,8 +19,8 @@ class FactList(OrderedDict):
     Contains a list of facts (``asserted`` data).
 
     In clips, there is the concept of "modules"
-    (:obj:`pyknow.engine.KnowledgeEngine`), wich have their own
-    :obj:`pyknow.factlist.FactList` and :obj:`pyknow.agenda.Agenda`
+    (:obj:`experta.engine.KnowledgeEngine`), wich have their own
+    :obj:`experta.factlist.FactList` and :obj:`experta.agenda.Agenda`
 
     A factlist acts as both the module's factlist and a ``fact-set``
     yet currently most methods from a ``fact-set`` are not yet
@@ -57,7 +57,7 @@ class FactList(OrderedDict):
                      from the Fact class.
 
         :param fact: The fact to declare, **must** be derived from
-                     :obj:`pyknow.fact.Fact`.
+                     :obj:`experta.fact.Fact`.
         :return: (int) The index of the fact in the list.
         :throws ValueError: If the fact providen is not a Fact object
 

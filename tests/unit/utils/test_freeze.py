@@ -1,6 +1,6 @@
 import pytest
 
-from pyknow.utils import freeze, unfreeze, frozenlist, frozendict
+from experta.utils import freeze, unfreeze, frozenlist, frozendict
 
 
 def test_freeze_hashable():

@@ -4,11 +4,11 @@ from functools import singledispatch
 import dis
 import inspect
 
-from pyknow.fieldconstraint import FieldConstraint
-from pyknow.fieldconstraint import L, P, W
-from pyknow.fieldconstraint import ANDFC, ORFC, NOTFC
+from experta.fieldconstraint import FieldConstraint
+from experta.fieldconstraint import L, P, W
+from experta.fieldconstraint import ANDFC, ORFC, NOTFC
 from .abstract import Check
-from pyknow.watchers import MATCH
+from experta.watchers import MATCH
 
 
 CheckFunction = namedtuple('CheckFunction',
