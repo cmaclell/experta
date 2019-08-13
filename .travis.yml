@@ -1,14 +1,14 @@
 language: python
 python:
-    - "3.4"
     - "3.5"
     - "3.6"
+    - "3.7"
 install:
-    - pip install -r requirements/develop.txt
-    - pip install codecov
-    - python setup.py develop
+    - pip install pipenv
+    - pipenv install --dev --ignore-pipfile --skip-lock
+    - pipenv run python setup.py develop
 script:
-  - pycodestyle --show-source --show-pep8 experta
-  - coverage run $(which py.test) -m 'not wip' -v tests/unit
+  - pipenv run pycodestyle --show-source --show-pep8 experta
+  - pipenv run coverage run $(pipenv run which py.test) -m 'not wip' -v tests/unit
 after_success:
-  - codecov
+  - pipenv run codecov
