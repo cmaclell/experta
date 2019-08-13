@@ -10,5 +10,7 @@ install:
 script:
   - pipenv run pycodestyle --show-source --show-pep8 experta
   - pipenv run coverage run $(pipenv run which py.test) -m 'not wip' -v tests/unit
+  - pipenv run python setup.py sdist bdist_wheel
+  - twine check dist/*
 after_success:
   - pipenv run codecov
