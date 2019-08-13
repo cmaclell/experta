@@ -1,16 +1,13 @@
-.. note:: Work in progress
-
 =========
 |Experta|  
 =========
+
+|pypi| |version| |tests| |docs| |coverage|
 
 .. note:: Migrating from Pyknow
 
    Experta is a Pyknow fork. Just replace any `pyknow` references in
    your code/examples to `experta` and everything should work the same.
-
-
-|pypi| |version| |tests| |docs| |coverage|
 
 Experta is a Python library for building expert systems strongly inspired
 by CLIPS_.
