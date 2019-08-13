@@ -20,7 +20,7 @@ You can clone the repository using the git command:
 
 .. code-block:: bash
 
-   $ git clone https://github.com/buguroo/experta.git
+   $ git clone https://github.com/nilp0inter/experta.git
 
 Or you can `download the releases`_ in .zip or .tar.gz format.
 
@@ -31,5 +31,5 @@ Once you have a copy of the source, you can install it running this command:
    $ python setup.py install
 
 
-.. _`on Github`: https://github.com/buguroo/experta
-.. _`download the releases`: https://github.com/buguroo/experta/releases
+.. _`on Github`: https://github.com/nilp0inter/experta
+.. _`download the releases`: https://github.com/nilp0inter/experta/releases
