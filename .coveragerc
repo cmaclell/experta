@@ -2,10 +2,10 @@
 branch = True
 cover_pylib = False
 include =
-    pyknow/*
-    .tox/*/pyknow/*
+    experta/*
+    .tox/*/experta/*
 
 [path]
 source = 
-    pyknow
-    .tox/*/pyknow
+    experta
+    .tox/*/experta
