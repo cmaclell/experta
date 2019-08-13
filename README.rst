@@ -66,7 +66,7 @@ You can find some more examples on GitHub_.
     :target: https://travis-ci.org/nilp0inter/experta
 
 .. |docs| image:: https://readthedocs.org/projects/experta/badge/?version=stable
-    :target: https://readthedocs.org/projects/experta/?badge=stable
+    :target: https://experta.readthedocs.io/en/stable/
     :alt: Documentation Status
 
 .. |coverage| image:: https://codecov.io/gh/nilp0inter/experta/branch/develop/graph/badge.svg
