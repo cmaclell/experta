@@ -1,6 +1,10 @@
+CHANGELOG
+---------
+
 1.9.0
 +++++
 
+* Drop Python 3.4 support.
 * Use setup.cfg to save all package metadata.
 
 
