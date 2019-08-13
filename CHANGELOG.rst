@@ -1,6 +1,12 @@
 CHANGELOG
 ---------
 
+1.9.1
++++++
+
+* Resolved #3. Rules should not be called with already retracted facts.
+
+
 1.9.0
 +++++
 
