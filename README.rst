@@ -1,5 +1,3 @@
-.. note:: Work in progress
-
 =========
 |Experta|  
 =========
@@ -42,6 +40,16 @@ by CLIPS_.
    >>> engine.run()
    Be cautious because light is blinking-yellow
 
+
+Migrating from Pyknow
+---------------------
+
+Experta is a Pyknow fork. Just replace any `pyknow` references in your
+code/examples to `experta` and everything should work the same.
+
+
+Examples
+--------
 
 You can find some more examples on GitHub_.
 
