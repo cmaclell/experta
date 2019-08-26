@@ -171,3 +171,13 @@ def test_fields_default_are_called_once_per_instance():
     f2 = MockFact()
     assert f2["myfield"] == "TEST"
     assert mymock.call_count == 2
+
+
+def test_positional_fields_are_validated():
+    class MyFact(Fact):
+        _0 = Field(int)
+
+    f1 = MyFact("foo")
+
+    with pytest.raises(ValueError):
+        f1.validate()
