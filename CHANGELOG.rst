@@ -1,6 +1,13 @@
 CHANGELOG
 ---------
 
+1.9.2
+~~~~~
+
+* Resolved #7. In some situations last activation was removed right
+  after entering the agenda.
+
+
 1.9.1
 ~~~~~
 
