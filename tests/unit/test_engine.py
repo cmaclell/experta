@@ -956,3 +956,33 @@ def test_reset_kwargs_are_passed_to_multiple_deffacts():
     ke = KE()
     ke.reset(arg0=0, arg1=1)
     assert passed == {0, 1}
+
+
+def test_last_activation_is_executed():
+    from experta import KnowledgeEngine, Rule, Fact, AS
+
+    executed = list()
+    first, second = object(), object()
+
+    class KE(KnowledgeEngine):
+        @Rule(
+            Fact(s=True),
+            Fact('A')
+        )
+        def second(self):
+            executed.append(second)
+
+        @Rule(
+            AS.f << Fact(s=False),
+            Fact('A')
+        )
+        def first(self, f):
+            executed.append(first)
+            self.modify(f, s=True)
+
+    ke = KE()
+    ke.reset()
+    ke.declare(Fact('A'))
+    ke.declare(Fact(s=False))
+    ke.run()
+    assert executed == [first, second]

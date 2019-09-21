@@ -39,9 +39,13 @@ class Validable(type):
         for base in bases:
             if isinstance(base, Validable):
                 for key, value in base.__fields__.items():
+                    if key.startswith('_') and key[1:].isdigit():
+                        key = int(key[1:])
                     newnamespace["__fields__"][key] = value
 
         for key, value in nmspc.items():
+            if key.startswith('_') and key[1:].isdigit():
+                key = int(key[1:])
             if isinstance(value, BaseField):
                 newnamespace["__fields__"][key] = value
             else:

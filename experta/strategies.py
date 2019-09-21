@@ -13,10 +13,6 @@ class DepthStrategy(Strategy):
         return (salience, facts)
 
     def _update_agenda(self, agenda, added, removed):
-        for act in added:
-            act.key = self.get_key(act)
-            bisect.insort(agenda.activations, act)
-
         for act in removed:
             act.key = self.get_key(act)
             try:
@@ -24,3 +20,7 @@ class DepthStrategy(Strategy):
                 del agenda.activations[idx]
             except IndexError:
                 pass
+
+        for act in added:
+            act.key = self.get_key(act)
+            bisect.insort(agenda.activations, act)
