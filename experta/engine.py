@@ -3,18 +3,17 @@
 
 """
 
-from itertools import chain
 import inspect
 import logging
+from itertools import chain
 
 from experta import abstract
-
+from experta import watchers
 from experta.agenda import Agenda
+from experta.deffacts import DefFacts
 from experta.fact import InitialFact
 from experta.factlist import FactList
 from experta.rule import Rule
-from experta.deffacts import DefFacts
-from experta import watchers
 
 logging.basicConfig()
 
@@ -77,6 +76,7 @@ class KnowledgeEngine:
         """
         self.retract(declared_fact)
 
+        print("modify ")
         newfact = declared_fact.copy()
         newfact.update(dict(self._get_real_modifiers(**modifiers)))
 
@@ -127,6 +127,24 @@ class KnowledgeEngine:
             added, removed = self.get_activations()
             self.strategy.update_agenda(self.agenda, added, removed)
 
+    def step(self):
+        """
+        perform one step of inference and return the next activation
+        :return: activation
+        """
+        added, removed = self.get_activations()
+        self.strategy.update_agenda(self.agenda, added, removed)
+
+        if watchers.worth('AGENDA', 'DEBUG'):  # pragma: no cover
+            for idx, act in enumerate(self.agenda.activations):
+                watchers.AGENDA.debug(
+                    "%d: %r %r",
+                    idx,
+                    act.rule.__name__,
+                    ", ".join(str(f) for f in act.facts))
+
+        return self.agenda.get_next()
+
     def run(self, steps=float('inf')):
         """
         Execute agenda activations
@@ -136,19 +154,7 @@ class KnowledgeEngine:
         activation = None
         execution = 0
         while steps > 0 and self.running:
-
-            added, removed = self.get_activations()
-            self.strategy.update_agenda(self.agenda, added, removed)
-
-            if watchers.worth('AGENDA', 'DEBUG'):  # pragma: no cover
-                for idx, act in enumerate(self.agenda.activations):
-                    watchers.AGENDA.debug(
-                        "%d: %r %r",
-                        idx,
-                        act.rule.__name__,
-                        ", ".join(str(f) for f in act.facts))
-
-            activation = self.agenda.get_next()
+            activation = self.step()
 
             if activation is None:
                 break
@@ -162,11 +168,44 @@ class KnowledgeEngine:
                     activation.rule.__name__,
                     ", ".join(str(f) for f in activation.facts))
 
-                activation.rule(
-                    self,
-                    **{k: v
-                       for k, v in activation.context.items()
-                       if not k.startswith('__')})
+                activation.fire(self)
+
+        self.running = False
+
+    def halt(self):
+        self.running = False
+
+    def reset(self, **kwargs):
+        """
+        Performs a reset as per CLIPS behaviour (resets the
+        agenda and factlist and declares InitialFact())
+        Any keyword argument passed to `reset` will be passed to @DefFacts
+        which have those arguments on their signature.
+        .. note:: If persistent facts have been added, they'll be
+                  re-declared.
+        """
+
+        self.agenda = Agenda()
+        self.facts = FactList()
+
+        self.matcher.reset()
+
+        deffacts = []
+        for deffact in self.get_deffacts():
+            signature = inspect.signature(deffact)
+            if not any(p.kind == inspect.Parameter.VAR_KEYWORD
+                       for p in signature.parameters.values()):
+                # There is not **kwargs defined. Pass only the defined
+                # names.
+                args = set(signature.parameters.keys())
+                deffacts.append(
+                    deffact(**{k: v for k, v in kwargs.items()
+                               if k in args}))
+            else:
+                deffacts.append(deffact(**kwargs))
+
+        # Declare all facts yielded by deffacts
+        self.__declare(*chain.from_iterable(deffacts))
 
         self.running = False
 
