@@ -10,6 +10,7 @@ class Activation:
     """
     Activation object
     """
+
     def __init__(self, rule, facts, context=None):
         self.rule = rule
         self.facts = set(facts)
@@ -18,6 +19,13 @@ class Activation:
             self.context = dict()
         else:
             self.context = context
+
+    def fire(self, ke):
+        return self.rule(
+            ke,
+            **{k: v
+               for k, v in self.context.items()
+               if not k.startswith('__')})
 
     def __repr__(self):  # pragma: no cover
         return "Activation(rule={}, facts={}, context={})".format(
