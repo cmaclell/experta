@@ -1,8 +1,6 @@
-from collections.abc import Iterable
-from functools import update_wrapper
 import inspect
+from functools import update_wrapper
 
-from experta import watchers
 from experta.conditionalelement import ConditionalElement
 
 
@@ -17,7 +15,7 @@ class Rule(ConditionalElement):
        point we assign the function decorated to ``self._wrapped`` and
        return ``self`` to be called the second time.
 
-    #. The second call is to execute the decorated function, se we
+    #. The second call is to execute the decorated function, so we
        pass all the arguments along.
     """
 
@@ -27,6 +25,7 @@ class Rule(ConditionalElement):
         obj._wrapped = None
         obj._wrapped_args = []
         obj._wrapped_self = None
+        obj._args = args
         obj.salience = salience
 
         return obj
@@ -89,6 +88,7 @@ class Rule(ConditionalElement):
                 return self._wrapped(self._wrapped_self, *args, **kwargs)
 
     def __repr__(self):  # pragma: no cover
+
         return "%s => %r" % (super().__repr__(), self._wrapped)
 
     def __get__(self, instance, owner):
