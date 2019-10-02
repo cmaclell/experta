@@ -1,14 +1,13 @@
-from itertools import chain
-from functools import lru_cache
 import abc
 import collections
+from itertools import chain
 
 from schema import Schema
 
+from experta.conditionalelement import ConditionalElement
+from experta.conditionalelement import OperableCE
 from experta.pattern import Bindable
 from experta.utils import freeze, unfreeze
-from experta.conditionalelement import OperableCE
-from experta.conditionalelement import ConditionalElement
 
 
 class BaseField(metaclass=abc.ABCMeta):
@@ -19,7 +18,6 @@ class BaseField(metaclass=abc.ABCMeta):
 
 
 class Field(BaseField):
-
     NODEFAULT = object()
 
     def __init__(self, schema_definition, mandatory=False, default=NODEFAULT):
@@ -56,6 +54,13 @@ class Validable(type):
 
 class Fact(OperableCE, Bindable, dict, metaclass=Validable):
     """Base Fact class"""
+
+    def __new__(cls, *args, **kwargs):
+        if '__class__' in kwargs:
+            cls = kwargs['__class__']
+            del kwargs['__class__']
+
+        return super().__new__(cls, *args, **kwargs)
 
     def __init__(self, *args, **kwargs):
         self.update(dict(chain(enumerate(args), kwargs.items())))
@@ -103,9 +108,12 @@ class Fact(OperableCE, Bindable, dict, metaclass=Validable):
 
     def as_dict(self):
         """Return a dictionary containing this `Fact` data."""
-        return {k: unfreeze(v)
-                for k, v in self.items()
-                if not self.is_special(k)}
+        d = {k: unfreeze(v)
+             for k, v in self.items()
+             if not self.is_special(k)}
+        if type(self) is not Fact:
+            d['__class__'] = type(self)
+        return d
 
     def copy(self):
         """Return a copy of this `Fact`."""
