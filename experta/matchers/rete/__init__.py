@@ -8,17 +8,18 @@ a more pythonic approach.
 .. _paper: http://reports-archive.adm.cs.cmu.edu/anon/scan/CMU-CS-79-forgy.pdf
 
 """
+import re
+from collections import Counter
 from functools import lru_cache
 from itertools import chain
-from collections import Counter
 
+from experta import OR
+from experta.abstract import Matcher
+from experta.fact import InitialFact
+from experta.rule import Rule
 from .check import TypeCheck, FactCapture, FeatureCheck
 from .nodes import BusNode, ConflictSetNode, FeatureTesterNode
 from .utils import prepare_rule, extract_facts, generate_checks, wire_rule
-from experta import OR
-from experta.rule import Rule
-from experta.fact import InitialFact
-from experta.abstract import Matcher
 
 
 class ReteMatcher(Matcher):
@@ -35,6 +36,7 @@ class ReteMatcher(Matcher):
         nodes = list()
 
         def _get_csn(node):
+
             if isinstance(node, ConflictSetNode):
                 yield node
             for child in node.children:
@@ -48,6 +50,7 @@ class ReteMatcher(Matcher):
 
     def changes(self, adding=None, deleting=None):
         """Pass the given changes to the root_node."""
+
         if deleting is not None:
             for deleted in deleting:
                 self.root_node.remove(deleted)
@@ -174,6 +177,12 @@ class ReteMatcher(Matcher):
                     wire_rule(rule, alpha_terminals, lhs=subrule)
             else:
                 wire_rule(rule, alpha_terminals, lhs=rule)
+
+    def isomorphic(self, other):
+        return re.sub('\d{13}', '0000000000000',
+                      self.print_network()) == re.sub('\d{13}',
+                                                      '0000000000000',
+                                                      other.print_network())
 
     def print_network(self):  # pragma: no cover
         """
