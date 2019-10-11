@@ -58,13 +58,24 @@ class Fact(OperableCE, Bindable, dict, metaclass=Validable):
     def __new__(cls, *args, **kwargs):
         if '__class__' in kwargs:
             cls = kwargs['__class__']
+
             del kwargs['__class__']
+
+            assert issubclass(cls, Fact)
 
         return super().__new__(cls, *args, **kwargs)
 
     def __init__(self, *args, **kwargs):
+        factid = None
+        if '__factid__' in kwargs:
+            factid = kwargs['__factid__']
+            del kwargs['__factid__']
+
         self.update(dict(chain(enumerate(args), kwargs.items())))
         self.__defaults = dict()
+
+        if factid is not None:
+            self.__factid__ = factid
 
     def __missing__(self, key):
         if key not in self.__fields__:
@@ -111,6 +122,8 @@ class Fact(OperableCE, Bindable, dict, metaclass=Validable):
         d = {k: unfreeze(v)
              for k, v in self.items()
              if not self.is_special(k)}
+        if self.__factid__ is not None:
+            d['__factid__'] = self.__factid__
         if type(self) is not Fact:
             d['__class__'] = type(self)
         return d
