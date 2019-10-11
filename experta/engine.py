@@ -20,7 +20,7 @@ logging.basicConfig()
 
 class KnowledgeEngine:
     """
-    This represents a clips' ``module``, wich is an ``inference engine``
+    This represents a clips' ``module``, which is an ``inference engine``
     holding a set of ``rules`` (as :obj:`experta.rule.Rule` objects),
     an ``agenda`` (as :obj:`experta.agenda.Agenda` object)
     and a ``fact-list`` (as :obj:`experta.factlist.FactList` objects)
@@ -61,7 +61,7 @@ class KnowledgeEngine:
 
         Modifies a fact.
 
-        Facts are inmutable in Clips, thus, as documented in clips
+        Facts are immutable in Clips, thus, as documented in clips
         reference manual, this retracts a fact and then re-declares it
 
         `modifiers` must be a Mapping object containing keys and values
@@ -76,7 +76,6 @@ class KnowledgeEngine:
         """
         self.retract(declared_fact)
 
-        print("modify ")
         newfact = declared_fact.copy()
         newfact.update(dict(self._get_real_modifiers(**modifiers)))
 
@@ -112,7 +111,8 @@ class KnowledgeEngine:
         """
         Return activations
         """
-        return self.matcher.changes(*self.facts.changes)
+        r = self.matcher.changes(*self.facts.changes)
+        return r
 
     def retract(self, idx_or_declared_fact):
         """
@@ -129,10 +129,15 @@ class KnowledgeEngine:
 
     def step(self):
         """
+            added, removed = self.get_activations()
+
         perform one step of inference and return the next activation
         :return: activation
         """
+
         added, removed = self.get_activations()
+        #if len(added) > 0:
+            #print("added in step: ", added)
         self.strategy.update_agenda(self.agenda, added, removed)
 
         if watchers.worth('AGENDA', 'DEBUG'):  # pragma: no cover
@@ -143,8 +148,6 @@ class KnowledgeEngine:
                     act.rule.__name__,
                     ", ".join(str(f) for f in act.facts))
 
-        return self.agenda.get_next()
-
     def run(self, steps=float('inf')):
         """
         Execute agenda activations
@@ -154,7 +157,9 @@ class KnowledgeEngine:
         activation = None
         execution = 0
         while steps > 0 and self.running:
-            activation = self.step()
+            self.step()
+            activation = self.agenda.get_next()
+
 
             if activation is None:
                 break
@@ -192,6 +197,7 @@ class KnowledgeEngine:
 
         deffacts = []
         for deffact in self.get_deffacts():
+
             signature = inspect.signature(deffact)
             if not any(p.kind == inspect.Parameter.VAR_KEYWORD
                        for p in signature.parameters.values()):
@@ -205,50 +211,14 @@ class KnowledgeEngine:
                 deffacts.append(deffact(**kwargs))
 
         # Declare all facts yielded by deffacts
-        self.__declare(*chain.from_iterable(deffacts))
+
+        self.__declare(*chain.from_iterable(deffacts), cond=True)
 
         self.running = False
+        self.matcher._get_conflict_set_nodes.cache_clear()
 
-    def halt(self):
-        self.running = False
+    def __declare(self, *facts, cond=False):
 
-    def reset(self, **kwargs):
-        """
-        Performs a reset as per CLIPS behaviour (resets the
-        agenda and factlist and declares InitialFact())
-
-        Any keyword argument passed to `reset` will be passed to @DefFacts
-        which have those arguments on their signature.
-
-        .. note:: If persistent facts have been added, they'll be
-                  re-declared.
-        """
-
-        self.agenda = Agenda()
-        self.facts = FactList()
-
-        self.matcher.reset()
-
-        deffacts = []
-        for deffact in self.get_deffacts():
-            signature = inspect.signature(deffact)
-            if not any(p.kind == inspect.Parameter.VAR_KEYWORD
-                       for p in signature.parameters.values()):
-                # There is not **kwargs defined. Pass only the defined
-                # names.
-                args = set(signature.parameters.keys())
-                deffacts.append(
-                    deffact(**{k: v for k, v in kwargs.items()
-                               if k in args}))
-            else:
-                deffacts.append(deffact(**kwargs))
-
-        # Declare all facts yielded by deffacts
-        self.__declare(*chain.from_iterable(deffacts))
-
-        self.running = False
-
-    def __declare(self, *facts):
         """
         Internal declaration method. Used for ``declare`` and ``deffacts``
         """
@@ -259,12 +229,16 @@ class KnowledgeEngine:
             raise KeyError(
                 "Cannot declare facts containing double underscores as keys.")
         else:
+
             last_inserted = None
+
             for fact in facts:
                 last_inserted = self.facts.declare(fact)
 
             if not self.running:
                 added, removed = self.get_activations()
+
+
                 self.strategy.update_agenda(self.agenda, added, removed)
 
             return last_inserted
@@ -279,5 +253,6 @@ class KnowledgeEngine:
         """
 
         if not self.facts:
-            watchers.ENGINE.warning("Declaring fact before reset()")
+            pass
+            #watchers.ENGINE.warning("Declaring fact before reset()")
         return self.__declare(*facts)
