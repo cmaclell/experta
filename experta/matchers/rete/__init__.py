@@ -36,17 +36,29 @@ class ReteMatcher(Matcher):
         nodes = list()
 
         def _get_csn(node):
-
+            #print(node, isinstance(node, ConflictSetNode))
             if isinstance(node, ConflictSetNode):
                 yield node
             for child in node.children:
                 yield from _get_csn(child.node)
 
         for node in _get_csn(self.root_node):
+
             if node not in nodes:
                 nodes.append(node)
 
+
         return tuple(nodes)
+
+    def log_network(self):
+        print("printing...")
+        def _get_csn(node):
+            #print(node, isinstance(node, ConflictSetNode))
+            for child in node.children:
+                print(child, isinstance(child, ConflictSetNode))
+                _get_csn(child.node)
+
+        _get_csn(self.root_node)
 
     def changes(self, adding=None, deleting=None):
         """Pass the given changes to the root_node."""
@@ -63,7 +75,9 @@ class ReteMatcher(Matcher):
         removed = list()
 
         for csn in self._get_conflict_set_nodes():
+
             c_added, c_removed = csn.get_activations()
+
             added.extend(c_added)
             removed.extend(c_removed)
 
@@ -76,6 +90,8 @@ class ReteMatcher(Matcher):
 
     def reset(self):
         self.root_node.reset()
+
+
 
     @staticmethod
     def prepare_ruleset(engine):
@@ -179,6 +195,8 @@ class ReteMatcher(Matcher):
                 wire_rule(rule, alpha_terminals, lhs=rule)
 
     def isomorphic(self, other):
+        """ a rough equality test between different instances of
+        the same rete network """
         return re.sub('\d{13}', '0000000000000',
                       self.print_network()) == re.sub('\d{13}',
                                                       '0000000000000',
