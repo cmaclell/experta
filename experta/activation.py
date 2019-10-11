@@ -21,7 +21,6 @@ class Activation:
             self.context = context
 
     def fire(self, ke):
-
         return self.rule(
             ke,
             **{k: v
