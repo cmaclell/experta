@@ -13,6 +13,7 @@ class DepthStrategy(Strategy):
         return (salience, facts)
 
     def _update_agenda(self, agenda, added, removed):
+
         for act in removed:
             act.key = self.get_key(act)
             try:

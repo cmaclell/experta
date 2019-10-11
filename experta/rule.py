@@ -82,10 +82,15 @@ class Rule(ConditionalElement):
             if self._wrapped_args:
                 kwargs = {k: v for k, v in kwargs.items()
                           if k in self._wrapped_args}
+
             if self._wrapped_self is None:
+
                 return self._wrapped(*args, **kwargs)
             else:
-                return self._wrapped(self._wrapped_self, *args, **kwargs)
+
+                return self._wrapped(*args, **kwargs)
+                # todo: removed self._wrapped_self, as first arg here,
+                #  what was it for?
 
     def __repr__(self):  # pragma: no cover
 
