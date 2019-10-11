@@ -3,7 +3,7 @@ Activations represent rules that matches against a specific factlist.
 
 """
 from functools import total_ordering
-
+import inspect
 
 @total_ordering
 class Activation:
@@ -21,6 +21,7 @@ class Activation:
             self.context = context
 
     def fire(self, ke):
+
         return self.rule(
             ke,
             **{k: v
