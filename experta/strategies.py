@@ -17,7 +17,8 @@ class DepthStrategy(Strategy):
             act.key = self.get_key(act)
             try:
                 idx = bisect.bisect_left(agenda.activations, act)
-                del agenda.activations[idx]
+                if agenda.activations[idx] == act:
+                    del agenda.activations[idx]
             except IndexError:
                 pass
 
