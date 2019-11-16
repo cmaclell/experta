@@ -1,6 +1,13 @@
 CHANGELOG
 ---------
 
+1.9.3
+~~~~~
+
+* Resolve #11 that was introduced with #7, that caused the same behavior
+  under different conditions.
+
+
 1.9.2
 ~~~~~
 
