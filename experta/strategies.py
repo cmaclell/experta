@@ -15,12 +15,17 @@ class DepthStrategy(Strategy):
     def _update_agenda(self, agenda, added, removed):
         for act in removed:
             act.key = self.get_key(act)
-            try:
-                idx = bisect.bisect_left(agenda.activations, act)
-                if agenda.activations[idx] == act:
-                    del agenda.activations[idx]
-            except IndexError:
-                pass
+            idx = bisect.bisect_left(agenda.activations, act)
+            for o in (0, 1, -1):
+                try:
+                    if agenda.activations[idx+o] == act:
+                        del agenda.activations[idx+o]
+                    else:
+                        continue
+                except IndexError:
+                    pass
+                else:
+                    break
 
         for act in added:
             act.key = self.get_key(act)
