@@ -12,9 +12,11 @@ pycodestyle = "*"
 pydocstyle = "*"
 codecov = "*"
 twine = "*"
+ipython = "*"
 
 [packages]
 tox = "*"
+experta = {editable = true,path = "."}
 
 [requires]
-python_version = "3.4"
+python_version = "3.7"
