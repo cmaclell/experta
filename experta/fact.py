@@ -66,6 +66,7 @@ class Fact(OperableCE, Bindable, dict, metaclass=Validable):
         return super().__new__(cls, *args, **kwargs)
 
     def __init__(self, *args, **kwargs):
+        self.__source__ = None
         factid = None
         if '__factid__' in kwargs:
             factid = kwargs['__factid__']
@@ -128,9 +129,15 @@ class Fact(OperableCE, Bindable, dict, metaclass=Validable):
             d['__class__'] = type(self)
         return d
 
-    def copy(self):
+    def copy(self, sub=None):
         """Return a copy of this `Fact`."""
         content = [(k, v) for k, v in self.items()]
+
+        if sub is not None:
+            for i, tup in enumerate(content):
+                while tup[1] in sub.keys():
+                    tup = (tup[0], sub[tup[1]])
+                content[i] = tup
 
         intidx = [(k, v) for k, v in content if isinstance(k, int)]
         args = [v for k, v in sorted(intidx)]
