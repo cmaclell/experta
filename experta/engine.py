@@ -7,6 +7,7 @@ import inspect
 import logging
 from itertools import chain
 
+import experta
 from experta import abstract
 from experta import watchers
 from experta.agenda import Agenda
@@ -136,8 +137,8 @@ class KnowledgeEngine:
         """
 
         added, removed = self.get_activations()
-        #if len(added) > 0:
-            #print("added in step: ", added)
+        # if len(added) > 0:
+        # print("added in step: ", added)
         self.strategy.update_agenda(self.agenda, added, removed)
 
         if watchers.worth('AGENDA', 'DEBUG'):  # pragma: no cover
@@ -159,7 +160,6 @@ class KnowledgeEngine:
         while steps > 0 and self.running:
             self.step()
             activation = self.agenda.get_next()
-
 
             if activation is None:
                 break
@@ -238,7 +238,6 @@ class KnowledgeEngine:
             if not self.running:
                 added, removed = self.get_activations()
 
-
                 self.strategy.update_agenda(self.agenda, added, removed)
 
             return last_inserted
@@ -251,8 +250,16 @@ class KnowledgeEngine:
 
             This updates the agenda.
         """
+        try:
+            activation_frame = inspect.currentframe().f_back.f_back.f_back
+            assert type(activation_frame.f_locals[
+                            'self']) == experta.activation.Activation
+            for fact in facts:
+                fact.__source__ = activation_frame.f_locals['self']
+        except:
+            pass
 
         if not self.facts:
-            pass
-            #watchers.ENGINE.warning("Declaring fact before reset()")
+            pass  # watchers.ENGINE.warning("Declaring fact before reset()")
+
         return self.__declare(*facts)
