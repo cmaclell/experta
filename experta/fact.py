@@ -67,6 +67,7 @@ class Fact(OperableCE, Bindable, dict, metaclass=Validable):
 
     def __init__(self, *args, **kwargs):
         self.__source__ = None
+        self.__children__ = []
         factid = None
         if '__factid__' in kwargs:
             factid = kwargs['__factid__']

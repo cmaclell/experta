@@ -115,7 +115,7 @@ class KnowledgeEngine:
         r = self.matcher.changes(*self.facts.changes)
         return r
 
-    def retract(self, idx_or_declared_fact):
+    def retract(self, idx_or_declared_fact, cascade=True):
         """
         Retracts a specific fact, using its index
 
@@ -127,6 +127,10 @@ class KnowledgeEngine:
         if not self.running:
             added, removed = self.get_activations()
             self.strategy.update_agenda(self.agenda, added, removed)
+
+        if cascade:
+            for child in idx_or_declared_fact.__children__:
+                self.retract(child)
 
     def step(self):
         """
@@ -256,6 +260,8 @@ class KnowledgeEngine:
                             'self']) == experta.activation.Activation
             for fact in facts:
                 fact.__source__ = activation_frame.f_locals['self']
+                for f in fact.__source__.facts:
+                    f.__children__.append(fact)
         except:
             pass
 
