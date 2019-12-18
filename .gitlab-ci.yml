@@ -31,7 +31,7 @@ pages:
     - mv sphinx public/
   environment:
     name: pages
-    url: https://git.hq-git.soartech.com/apprentice/experta/
+    url: https://apprentice.hq-git.soartech.com/experta/
   artifacts:
     paths:
       - public
