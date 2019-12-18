@@ -1,3 +1,6 @@
+variables:
+  PYTHONPATH: '..'
+
 before_script:
   - apk --no-cache add python3 py3-pip
 
