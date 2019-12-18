@@ -986,3 +986,36 @@ def test_last_activation_is_executed():
     ke.declare(Fact(s=False))
     ke.run()
     assert executed == [first, second]
+
+def test_last_activation_is_executed_2():
+    from experta import KnowledgeEngine, Rule, Fact, AS, DefFacts
+    from experta import NOT, W, MATCH
+
+    executed = None
+
+    class KE(KnowledgeEngine):
+        @DefFacts()
+        def _initial_action(self):
+            yield Fact(action="greet")
+
+        @Rule(Fact(action='greet'),
+              NOT(Fact(name=W())))
+        def ask_name(self):
+            self.declare(Fact(name="foo"))
+
+        @Rule(Fact(action='greet'),
+              NOT(Fact(location=W())))
+        def ask_location(self):
+            self.declare(Fact(location="bar"))
+
+        @Rule(Fact(action='greet'),
+              Fact(name=MATCH.name),
+              Fact(location=MATCH.location))
+        def greet(self, name, location):
+            nonlocal executed
+            executed = (name, location)
+
+    ke = KE()
+    ke.reset()
+    ke.run()
+    assert executed == ("foo", "bar")
