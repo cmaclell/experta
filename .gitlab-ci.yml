@@ -8,7 +8,7 @@ stages:
 sphinx:
   stage: document
   script:
-    - pip3 install sphinx
+    - pip3 install -r docs/doc-requirements.txt
     - apk --no-cache add make
     - cd docs
     - make html
