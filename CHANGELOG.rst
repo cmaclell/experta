@@ -1,6 +1,20 @@
 CHANGELOG
 ---------
 
+1.9.4
+~~~~~
+
+* Resolved #10. Corner case in DepthStrategy in which the first
+  activation of the agenda didn't get removed.
+
+
+1.9.3
+~~~~~
+
+* Resolved #11 that was introduced with #7, that caused the same
+  behavior under different conditions.
+
+
 1.9.2
 ~~~~~
 
