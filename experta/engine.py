@@ -130,7 +130,10 @@ class KnowledgeEngine:
 
         if cascade:
             for child in idx_or_declared_fact.__children__:
-                self.retract(child)
+                try:
+                    self.retract(child)
+                except IndexError:  # child has already been deleted
+                    pass
 
     def step(self):
         """
