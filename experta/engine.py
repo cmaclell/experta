@@ -15,6 +15,7 @@ from experta.deffacts import DefFacts
 from experta.fact import InitialFact
 from experta.factlist import FactList
 from experta.rule import Rule
+from experta.fact import Fact
 
 logging.basicConfig()
 
@@ -264,8 +265,10 @@ class KnowledgeEngine:
             for fact in facts:
                 fact.__source__ = activation_frame.f_locals['self']
                 for f in fact.__source__.facts:
+                    if not isinstance(f, Fact):
+                        continue
                     f.__children__.append(fact)
-        except:
+        except AssertionError:
             pass
 
         if not self.facts:
