@@ -270,6 +270,8 @@ class KnowledgeEngine:
                     f.__children__.append(fact)
         except AssertionError:
             pass
+        except AttributeError:
+            pass
 
         if not self.facts:
             pass  # watchers.ENGINE.warning("Declaring fact before reset()")
