@@ -2,14 +2,15 @@
 Utilities for the py_plan library.
 """
 
-from __future__ import print_function
-from __future__ import unicode_literals
 from __future__ import absolute_import
 from __future__ import division
+from __future__ import print_function
+from __future__ import unicode_literals
 
-import itertools
-from experta import W
 from operator import or_
+
+from experta import W
+
 
 def execute_functions(fun, s=()):
     """
@@ -58,7 +59,8 @@ def is_variable(x):
     >>> is_variable('x')
     False
     """
-    return isinstance(x, W) or isinstance(x, str) and len(x) > 0 and x[0] == "?"
+    return isinstance(x, W) or isinstance(x, str) and len(x) > 0 and x[
+        0] == "?"
 
 
 def is_function(x):
@@ -83,8 +85,18 @@ def subst(s, x):
     else:
         return x
 
-def unify_chain(x, y, s=(), check=False):
+
+def unify_fact(x, y, s=(), check=False):
     keys = set(x.keys()).intersection(set(y.keys()))
+    x = {k: x[k] for k in keys}
+    y = {k: y[k] for k in keys}
+    print("unifying facts: ", x, y)
+    return unify(x, y, s, check)
+
+
+def unify_dict(x, y):
+    keys = set([k for k in  x.keys() if type(k) is int or k[:2]!="__"]).intersection(set(y.keys()))
+    return tuple(v for k, v in x.items() if k in keys),  tuple(v for k, v in y.items() if k in keys)
 
 
 def unify(x, y, s=(), check=False):
@@ -102,6 +114,10 @@ def unify(x, y, s=(), check=False):
     """
     if s == ():
         s = {}
+
+    if isinstance(x, dict):
+        assert isinstance(y, dict)
+        x, y = unify_dict(x, y)
 
     if s is None:
         return None
@@ -208,5 +224,4 @@ def extend(s, var, val):
 
 
 if __name__ == "__main__":
-
     print(unify('?x', ('relation', '?x'), {}))
