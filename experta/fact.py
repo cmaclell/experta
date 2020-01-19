@@ -130,7 +130,7 @@ class Fact(OperableCE, Bindable, dict, metaclass=Validable):
             d['__class__'] = type(self)
         return d
 
-    def copy(self, sub=None):
+    def copy(self, sub=None, bind=False):
         """Return a copy of this `Fact`."""
         content = [(k, v) for k, v in self.items()]
 
@@ -145,7 +145,8 @@ class Fact(OperableCE, Bindable, dict, metaclass=Validable):
 
         kwargs = {k: v
                   for k, v in content
-                  if not isinstance(k, int) and not self.is_special(k)}
+                  if not isinstance(k, int) and not self.is_special(k, bind)}
+
         return self.__class__(*args, **kwargs)
 
     def has_field_constraints(self):
@@ -155,10 +156,10 @@ class Fact(OperableCE, Bindable, dict, metaclass=Validable):
         return any(("__" in str(k).strip('__') for k in self.keys()))
 
     @staticmethod
-    def is_special(key):
+    def is_special(key, bind=False):
         return (isinstance(key, str)
                 and key.startswith('__')
-                and key.endswith('__'))
+                and key.endswith('__')) and not (bind and key == "__bind__")
 
     @property
     def __bind__(self):
