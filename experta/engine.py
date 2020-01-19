@@ -268,9 +268,7 @@ class KnowledgeEngine:
                     if not isinstance(f, Fact):
                         continue
                     f.__children__.append(fact)
-        except AssertionError:
-            pass
-        except AttributeError:
+        except (AssertionError, AttributeError, KeyError):
             pass
 
         if not self.facts:
