@@ -12,10 +12,10 @@ from experta import abstract
 from experta import watchers
 from experta.agenda import Agenda
 from experta.deffacts import DefFacts
+from experta.fact import Fact
 from experta.fact import InitialFact
 from experta.factlist import FactList
 from experta.rule import Rule
-from experta.fact import Fact
 
 logging.basicConfig()
 
@@ -258,17 +258,34 @@ class KnowledgeEngine:
 
             This updates the agenda.
         """
+        # try:
+        #     activation_frame = inspect.currentframe().f_back.f_back.f_back
+        #     assert type(activation_frame.f_locals[
+        #                     'self']) == experta.activation.Activation
+        #     for fact in facts:
+        #         fact.__source__ = activation_frame.f_locals['self']
+        #         for f in fact.__source__.facts:
+        #             if not isinstance(f, Fact):
+        #                 continue
+        #             f.__children__.append(fact)
+        # except (AssertionError, AttributeError, KeyError):
+        #     pass
+
         try:
-            activation_frame = inspect.currentframe().f_back.f_back.f_back
-            assert type(activation_frame.f_locals[
-                            'self']) == experta.activation.Activation
-            for fact in facts:
-                fact.__source__ = activation_frame.f_locals['self']
-                for f in fact.__source__.facts:
-                    if not isinstance(f, Fact):
-                        continue
-                    f.__children__.append(fact)
-        except (AssertionError, AttributeError, KeyError):
+            activation_frame = inspect.currentframe().f_back
+            for i in range(7):
+                if 'self' in activation_frame.f_locals:
+                    if type(activation_frame.f_locals[
+                                'self']) == experta.activation.Activation:
+                        for fact in facts:
+                            fact.__source__ = activation_frame.f_locals['self']
+                            for f in fact.__source__.facts:
+                                if not isinstance(f, Fact):
+                                    continue
+                                f.__children__.append(fact)
+                        break
+                activation_frame = activation_frame.f_back
+        except (AssertionError, AttributeError, KeyError) as e:
             pass
 
         if not self.facts:
