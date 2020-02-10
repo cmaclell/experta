@@ -12,6 +12,7 @@ import re
 from collections import Counter
 from functools import lru_cache
 from itertools import chain
+import copy
 
 from experta import OR
 from experta.abstract import Matcher
@@ -30,6 +31,17 @@ class ReteMatcher(Matcher):
         super().__init__(*args, **kwargs)
         self.root_node = BusNode()
         self.build_network()
+
+    def __deepcopy__(self, memo):
+        cls = self.__class__
+        result = cls.__new__(cls)
+        memo[id(self)] = result
+        for k, v in self.__dict__.items():
+            # todo: figure this one out..
+            if k is not "root_node":
+                setattr(result, k, copy.deepcopy(v, memo))
+        result.__init__(result.engine)
+        return result
 
     @lru_cache(maxsize=1)
     def _get_conflict_set_nodes(self):
