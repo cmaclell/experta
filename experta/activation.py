@@ -13,7 +13,7 @@ class Activation:
 
     def __init__(self, rule, facts, context=None):
         self.rule = rule
-        self.ordered_facts = facts
+        #self.ordered_facts = facts
         self.facts = set(facts)
         self.key = None
         if context is None:
@@ -22,6 +22,7 @@ class Activation:
             self.context = context
 
     def fire(self, ke):
+        #print(len(self.context))
         return self.rule(
             ke,
             **{k: v

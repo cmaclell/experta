@@ -1,5 +1,6 @@
 __all__ = ['AND', 'OR', 'NOT', 'TEST', 'EXISTS', 'FORALL']
 
+from itertools import chain
 
 class ConditionalElement(tuple):
     """Base Conditional Element"""
@@ -34,6 +35,15 @@ class OperableCE:
 
     def __invert__(self):
         return NOT(self)
+
+    # def copy(self, sub=None):
+    #     if isinstance(self, NOT):
+    #         return NOT(*[x.copy(sub=sub) for x in self])
+    #
+    #     if isinstance(self, TEST):
+    #         return TEST(*[x.copy(sub=sub) for x in self])
+    #     #todo: AND, OR
+
 
 
 class AND(OperableCE, ConditionalElement):

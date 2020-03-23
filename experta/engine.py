@@ -123,6 +123,12 @@ class KnowledgeEngine:
         .. note::
             This updates the agenda
         """
+        #if type(idx_or_declared_fact) is dict:
+            #idx_or_declared_fact = idx_or_declared_fact['__factid__']
+
+        if type(idx_or_declared_fact) is int:
+            idx_or_declared_fact = self.facts[idx_or_declared_fact]
+
         self.facts.retract(idx_or_declared_fact)
 
         if not self.running:

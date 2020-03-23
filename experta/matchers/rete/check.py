@@ -260,6 +260,7 @@ class WhereCheck(Check, namedtuple('_WhereCheck', ['test'])):
 
     def __call__(self, context):
         parameters = {k: context.get(k) for k in self.parameters}
+
         res = self.test(**parameters)
 
         log = MATCH.info if res else MATCH.debug

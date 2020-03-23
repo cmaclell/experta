@@ -71,6 +71,7 @@ class Rule(ConditionalElement):
                 self._wrapped = args[0]
 
                 signature = inspect.signature(self._wrapped)
+
                 if not any(p.kind == inspect.Parameter.VAR_KEYWORD
                            for p in signature.parameters.values()):
                     # There is not **kwargs defined. Pass only the defined
@@ -84,11 +85,11 @@ class Rule(ConditionalElement):
                           if k in self._wrapped_args}
 
             if self._wrapped_self is None:
+                x = self._wrapped(*args, **kwargs)
 
-                return self._wrapped(*args, **kwargs)
             else:
 
-                return self._wrapped(*args, **kwargs)
+                return self._wrapped(self._wrapped_self, *args, **kwargs)
                 # todo: removed self._wrapped_self, as first arg here,
                 #  what was it for?
 

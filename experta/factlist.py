@@ -70,7 +70,6 @@ class FactList(OrderedDict):
         fact.validate()
 
         fact_id = self._get_fact_id(fact)
-
         if self.duplication or fact_id not in self.reference_counter:
             # Assign the ID to the fact
             idx = self.last_index

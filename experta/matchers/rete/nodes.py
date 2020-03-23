@@ -8,7 +8,6 @@ needed in this implementation.
 """
 from collections.abc import Mapping
 from contextlib import suppress
-from itertools import chain
 
 from experta.activation import Activation
 from experta.rule import Rule
@@ -56,8 +55,8 @@ class WhereNode(mixins.AnyChild,
     Check some conditions over a token context.
 
     """
+
     def _activate(self, token):
-        #print(self.__class__.__name__, '._activate: ', token)
         if self.matcher(token.context):
             for child in self.children:
                 child.callback(token)
@@ -100,7 +99,6 @@ class FeatureTesterNode(mixins.AnyChild,
     """
 
     def _activate(self, token):
-        #print(self.__class__.__name__, '._activate: ', token)
         """
         Activate this node.
 
@@ -116,7 +114,6 @@ class FeatureTesterNode(mixins.AnyChild,
             fact = list(token.data)[0]
 
         match = self.matcher(fact)
-
 
         if match:
             if isinstance(match, Mapping):
@@ -264,16 +261,12 @@ class ConflictSetNode(mixins.AnyChild,
 
     def _activate(self, token):
         """Activate this node for the given token."""
-        #print(self.__class__.__name__, '._activate: ', token)
         info = token.to_info()
-
-
 
         activation = Activation(
             self.rule,
             frozenset(info.data),
             {k: v for k, v in info.context if isinstance(k, str)})
-
 
         if token.is_valid():
             if info not in self.memory:

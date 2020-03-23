@@ -58,9 +58,7 @@ class Fact(OperableCE, Bindable, dict, metaclass=Validable):
     def __new__(cls, *args, **kwargs):
         if '__class__' in kwargs:
             cls = kwargs['__class__']
-
             del kwargs['__class__']
-
             assert issubclass(cls, Fact)
 
         return super().__new__(cls, *args, **kwargs)

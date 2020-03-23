@@ -181,3 +181,16 @@ def test_positional_fields_are_validated():
 
     with pytest.raises(ValueError):
         f1.validate()
+
+def test_to_from_dict():
+    class Fruit(Fact):
+        pass
+
+    d = {'color': 'red', 'name': 'apple', '__class__': Fruit}
+    f = Fact(**d)
+
+    assert(isinstance(f, Fruit))
+
+    d2 = f.as_dict()
+
+    assert d == d2
