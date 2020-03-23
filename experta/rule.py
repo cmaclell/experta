@@ -88,8 +88,8 @@ class Rule(ConditionalElement):
                 x = self._wrapped(*args, **kwargs)
 
             else:
-
-                return self._wrapped(self._wrapped_self, *args, **kwargs)
+                #return self._wrapped(self._wrapped_self, *args, **kwargs)
+                return self._wrapped(*args, **kwargs)
                 # todo: removed self._wrapped_self, as first arg here,
                 #  what was it for?
 
