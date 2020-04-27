@@ -38,17 +38,20 @@ class KnowledgeEngine:
         self.facts = FactList()
         self.agenda = Agenda()
 
-        if (isinstance(self.__matcher__, type)
-                and issubclass(self.__matcher__, abstract.Matcher)):
-            self.matcher = self.__matcher__(self)
-        else:
-            raise TypeError("__matcher__ must be a subclass of Matcher")
+        self.init_matcher()
 
         if (isinstance(self.__strategy__, type)
                 and issubclass(self.__strategy__, abstract.Strategy)):
             self.strategy = self.__strategy__()
         else:
             raise TypeError("__strategy__ must be a subclass of Strategy")
+
+    def init_matcher(self):
+        if (isinstance(self.__matcher__, type)
+                and issubclass(self.__matcher__, abstract.Matcher)):
+            self.matcher = self.__matcher__(self)
+        else:
+            raise TypeError("__matcher__ must be a subclass of Matcher")
 
     @staticmethod
     def _get_real_modifiers(**modifiers):
@@ -123,8 +126,8 @@ class KnowledgeEngine:
         .. note::
             This updates the agenda
         """
-        #if type(idx_or_declared_fact) is dict:
-            #idx_or_declared_fact = idx_or_declared_fact['__factid__']
+        # if type(idx_or_declared_fact) is dict:
+        # idx_or_declared_fact = idx_or_declared_fact['__factid__']
 
         if type(idx_or_declared_fact) is int:
             idx_or_declared_fact = self.facts[idx_or_declared_fact]
